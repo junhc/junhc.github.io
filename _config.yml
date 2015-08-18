@@ -1,0 +1,31 @@
+# Base URL
+baseurl: ""
+
+# Site live URL
+url: http://junhc.github.io
+
+# Localhost 
+# url: http://127.0.0.1:4000  
+
+junhc:
+  name: Junhc
+  description: 让我们一起 分享生活 留住感动
+
+# Conversion / Build settings 
+markdown:    kramdown
+# This is how you put pygments config in jekyll 2.0 instead of pygments: true
+highlighter: pygments 
+
+# Permalinks
+permalink:        pretty
+
+exclude: 
+  - README.md
+  - .gitignore
+  - .sass-cache
+  - LICENSE.md
+
+# Sass conversion configs
+sass:
+    sass_dir: assets/css/_sass
+    style: :compressed
