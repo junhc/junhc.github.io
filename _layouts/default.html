@@ -8,13 +8,8 @@
         <meta name="description" content="{% if page.meta_description %}{{ page.meta_description }}{% else %}{% endif %}">
         <link rel="canonical" 
         href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-        
-        <!-- Harmony styles -->
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
-
-        <!-- Modernizr js -->
         <script async src="{{ site.baseurl }}/assets/js/modernizr.js"></script>    
-
         <!-- IE Fixes -->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
