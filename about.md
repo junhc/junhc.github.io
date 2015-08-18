@@ -4,4 +4,5 @@ title: About me
 permalink: /about/
 ---
 
-Hi, I am K.K! 
+大家好,我是K.K!
+请多指教. 
