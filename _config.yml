@@ -12,14 +12,19 @@ junhc:
   description: 岂止于博客
 
 # Conversion / Build settings 
-markdown:    kramdown
+#markdown: kramdown
+markdown: redcarpet
+redcarpet:
+  extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
+
 # This is how you put pygments config in jekyll 2.0 instead of pygments: true
 highlighter: pygments 
 
 # Permalinks
-permalink:        pretty
+permalink: pretty
 
 exclude: 
+  - CNAME
   - README.md
   - .gitignore
   - .sass-cache
