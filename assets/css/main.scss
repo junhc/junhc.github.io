@@ -368,7 +368,7 @@ div.page-content {
   min-height: initial;
 
   @include MQ(M) {
-    min-height: 400px;
+    min-height: 500px;
   }
 }    
 
@@ -509,8 +509,6 @@ footer.main-footer {
   @include MQ(M) { padding: 2em 0; }
 }
 .page-content {
-  padding: 1em 0;
-  @include MQ(M) { padding: 2em 0; }
 }
 
 
@@ -541,13 +539,13 @@ Code snippets
 
 --------------------------------- */
 code, pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: "Consolas","Courier New","宋体",Courier,mono,serif;
 }
 code {  
   padding: .25em .5em;
   font-size: 85%;
-  color: $base-08;
-  background-color: rgba($base-08, .1);
+  color: #da4939;
+  background-color: rgba(218,73,57,0.1);
 }
 pre {
   display: block;
@@ -560,12 +558,12 @@ pre {
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
-  background-color: $color-white;
+  background-color: $color-background;
   border: 1px solid $base-05;
   code {
     padding: 0;
     font-size: 100%;
-    color: inherit;
+    color: $color-foreground;
     background-color: transparent;
   }
 
