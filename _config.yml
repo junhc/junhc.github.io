@@ -7,10 +7,13 @@ url: http://junhc.github.io
 # Localhost 
 # url: http://127.0.0.1:4000  
 
+# junhc theme configuration.
 junhc:
   name: Junhc
   description: 岂止于博客
-
+  social: 
+    github: junhc
+  firebase: https://junhc.firebaseio.com
 # Conversion / Build settings 
 markdown: redcarpet
 redcarpet:
