@@ -84,12 +84,15 @@ Sub("K.K");
 //我是Super
 
 var value="global 变量";
+
 function local(){
    this.value="local 变量";
 }
+
 function func(){
    console.log(this.value);
 }
+
 func();
 func.apply(window); 
 func.apply(new local());
