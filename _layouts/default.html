@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{% if page.title %}{{ page.title }}{% else %}{% endif %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">        
-        <meta name="description" content="{% if page.meta_description %}{{ page.meta_description }}{% else %}{% endif %}">
+        <meta itemprop="keywords" content="{% if page.categories %}{{ page.categories | join: ',' }}{% else %}{% endif %}" />
+	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{% endif %}">
         <link rel="canonical" 
         href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
