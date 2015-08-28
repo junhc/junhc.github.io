@@ -58,7 +58,7 @@ func();
 ```
 #### apply&call
 函数：`apply`，`call`  
-说明：`apply(this,arguments)`，`call(this,arg0,arg1,...)` 能够扩充函数赖以运行的作用域
+说明：`apply(this,arguments)`，`call(this,arg0,arg1,...)` 能够扩展函数的作用域
 
 ```JavaScript
 function Super(){
