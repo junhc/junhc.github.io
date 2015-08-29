@@ -1,7 +1,6 @@
 ---
 ---
-(function($){
- $(function(){
+$(function(){
   var jf = new Firebase($CONFIG["firebase"]);
 
   jf.child("pv").on("value", function(data){
@@ -28,6 +27,9 @@
 	return (sp || 0) + 1;
   });
 
-  $(".ad-thread").slide({mainCell:".bd ul",autoPage:true,autoPlay:true,delayTime:1000});	
- });
-})(jQuery);
+  $('#container').masonry({
+	itemSelector: '.item',
+	columnWidth: 5,
+	isAnimated: true
+  });
+});

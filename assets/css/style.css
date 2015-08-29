@@ -1,0 +1,106 @@
+.container{
+	position:relative;
+	min-height:600px;
+}
+.container a{
+	color:#fff;
+	text-decoration:none;
+}
+.container a.more_link{
+	color:#EF1010;
+	text-decoration:none;
+	font-size:10px;
+	text-transform:uppercase;
+	font-family:'Droid Sans', Arial, sans-serif;
+	font-style:normal;
+}
+.container a.more_link:hover{
+	border-bottom:1px dotted #ddd;
+}
+.container h1, h2{
+	font-family:'Oswald', Arial, sans-serif;
+}
+.container h1{
+	font-size:80px;
+	text-transform:uppercase;
+	text-shadow:0px 0px 1px rgba(0,0,0,0.8);
+}
+.container .header{
+	position:relative;
+	padding:20px 30px;
+	background:#222;
+	float:left;
+	color:#fff;
+	margin:5px;
+	-moz-box-shadow:1px 1px 3px rgba(0,0,0,0.3);
+	-webkit-box-shadow:1px 1px 3px rgba(0,0,0,0.3);
+	box-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
+.container .fancy{
+	font-family:'Ovo', 'Georgia', Baskerville, "Hoefler Text", Garamond, serif;
+}
+.container .header .fancy{
+	font-size:30px;
+}
+.container .block .fancy{
+	font-size:18px;
+}
+.container .header h1 span{
+	line-height:60px;
+	float: left;
+	color:#ef1010;
+}
+.container .header h2{
+	font-size:30px;
+	text-transform:uppercase;
+	width:400px;
+}
+.container p.subline{
+	font-family:'Droid Sans', Arial, sans-serif;
+	line-height:20px;
+	font-size:11px;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-style:normal;
+}
+.container .block{
+	float:left;
+	margin:5px;
+	background:#fff;
+	padding:20px;
+	width:260px;
+	border: 1px solid #d9d9bd;
+}
+.container .block-small{
+	width:160px;
+} 
+.container .block-medium{
+	width:174px;
+}
+.container .block h2{
+	font-size: 15px;
+	text-transform: uppercase;
+	background: #222;
+	color: white;
+	padding: 2px 5px;
+}
+.container .block p{
+	font-style:italic;
+	line-height:20px;
+	padding-bottom:5px;
+}
+.container .block p.subline{
+	margin:10px 0px;
+	font-style:normal;
+}
+.container .block img{
+	border:none;
+	display:block;
+}
+.container .thumbs-wrapper{
+	overflow:hidden;
+	position:relative;
+}
+.container .thumbs img{
+	float:left;
+}
