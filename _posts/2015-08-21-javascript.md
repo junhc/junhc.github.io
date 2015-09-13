@@ -12,6 +12,7 @@ permalink: javascript
 * [caller](#caller)
 * [callee](#callee)
 * [apply&call](#applycall)
+* [prototype](#prototype)
 
 #### caller
 属性：`caller`  
@@ -58,7 +59,7 @@ func();
 ```
 #### apply&call
 函数：`apply`，`call`  
-说明：`apply(this,arguments)`，`call(this,arg0,arg1,...)` 能够扩展函数的作用域
+说明：使用`apply(this,arguments)`，`call(this,arg0,arg1,...)`在Sub函数的作用域中调用Super函数，因此调用后Sub函数就拥有了Super函数的所有属性和方法。 
 
 ```JavaScript
 function Super(){
@@ -100,3 +101,6 @@ func.apply(new local());
 //global 变量
 //local 变量
 ```
+
+#### prototype 
+说明：每个函数都有一个prototype属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法。
