@@ -19,7 +19,7 @@ permalink: javascript
 属性：`caller`  
 说明：`func.caller` 返回一个*调用方函数*的引用
 
-```JavaScript
+```vim
 function func(){
   if(func.caller){
      console.log(func.caller.arguments);
@@ -62,7 +62,7 @@ func();
 函数：`apply`，`call`  
 说明：使用`apply(this,arguments)`，`call(this,arg0,arg1,...)`在Sub函数的作用域中调用Super函数，因此调用后Sub函数就拥有了Super函数的所有属性和方法。 
 
-```JavaScript
+```vim
 function Super(){
   console.log("执行Super");
   console.log(arguments);
@@ -107,7 +107,7 @@ func.apply(new local());
 说明：每个函数都有一个prototype属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法。  
 
 ### 终极弹窗解决方案，人类再也无法阻止弹窗了  
-```JavaScript  
+```vim  
 // 跳转
 function redirect(url) {
 	var form = $("<form method='get' target='_blank' style='display:none;'></form>");
