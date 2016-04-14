@@ -13,6 +13,7 @@ permalink: javascript
 * [callee](#callee)
 * [apply&call](#applycall)
 * [prototype](#prototype)
+* [终极弹窗解决方案，人类再也无法阻止弹窗了](#windowOpen)
 
 #### caller
 属性：`caller`  
@@ -103,4 +104,46 @@ func.apply(new local());
 ```
 
 #### prototype 
-说明：每个函数都有一个prototype属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法。
+说明：每个函数都有一个prototype属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法。  
+
+### 终极弹窗解决方案，人类再也无法阻止弹窗了  
+```JavaScript  
+// 跳转
+function redirect(url) {
+	var form = $("<form method='get' target='_blank' style='display:none;'></form>");
+	form.attr({
+		"action": url
+	});
+
+	if (url.indexOf("?") > -1) {
+		var queryString = {};
+		url.replace(/(\w+)=(\w+)/ig, function($0, $1, $2) {
+			queryString[$1] = $2;
+		});
+		for (name in queryString) {
+			var input = $("<input type='hidden'>");
+			input.attr({
+				"name": name
+			});
+			input.val(queryString[name]);
+			form.append(input);
+		};
+	}
+
+	form.append($("<input type='submit'/>"));
+	$("body").append(form);
+	form.submit();
+}
+
+// 下载
+function download() {
+	var iframe = document.getElementById('iframe_download_file');
+	if (!iframe) {
+		iframe = document.createElement("iframe");
+		iframe.id = 'iframe_download_file';
+		iframe.style.display = "none";
+		document.body.appendChild(iframe);
+	}
+	iframe.src = url;
+}
+```
