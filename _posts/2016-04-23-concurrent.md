@@ -4,7 +4,7 @@ title: "书签"
 date: 2016-04-23 15:55:35
 description: "并发编程"
 categories:
-- concurrent
+- java
 permalink: concurrent
 ---
 
