@@ -6,7 +6,8 @@ description: "并发编程"
 categories:
 - java
 permalink: concurrent
----
+---  
+
 ### ConcurrentHashMap  
 HashMap是非线程安全的,
 Hashtable是线程安全的,但是Hashtable是采用synchonized进行同步的,相当于所有线程进行读写时,都去竞争一把锁,导致效率非常低下.  
