@@ -42,7 +42,7 @@ handle("K.K");
 说明：`arguments.callee` 返回正被执行的*函数*对象，callee是arguments的一个属性成员，  
 它表示对函数对象本身的引用
 
-```JavaScript
+```vim
 function func(arg0,arg1){
   console.log(arguments.callee.toString());
   console.log("实参长度："+arguments.length);
