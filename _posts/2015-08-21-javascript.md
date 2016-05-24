@@ -14,6 +14,7 @@ permalink: javascript
 * [apply&call](#applycall)
 * [prototype](#prototype)
 * [终极弹窗解决方案，人类再也无法阻止弹窗了](#windowOpen)
+* [Boolean](#Boolean)
 
 #### caller
 属性：`caller`  
@@ -146,4 +147,22 @@ function download() {
 	}
 	iframe.src = url;
 }
+```  
+
+#### Boolean  
+说明：如果逻辑对象无初始值或者其值为 0、-0、null、""、false、undefined 或者 NaN，那么对象的值为 false。否则，其值为 true（即使当自变量为字符串 "false" 时）
+```vim  
+//返回false
+var isFalse = new Boolean();
+var isFalse = new Boolean(0);
+var isFalse = new Boolean(false);
+var isFalse = new Boolean(null);
+var isFalse = new Boolean("");
+var isFalse = new Boolean(NaN);
+//返回true
+var isTrue = new Boolean(1);
+var isTrue = new Boolean(true);
+var isTrue = new Boolean("true");
+var isTrue = new Boolean("false");
+var isTrue = new Boolean("K.K");
 ```
