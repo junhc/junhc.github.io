@@ -151,7 +151,8 @@ function download() {
 
 #### Boolean  
 说明：如果逻辑对象无初始值或者其值为 0、-0、null、""、false、undefined 或者 NaN，那么对象的值为 false。否则，其值为 true（即使当自变量为字符串 "false" 时）  
-```vim  
+
+```vim 
 //返回false
 var isFalse = new Boolean();
 var isFalse = new Boolean(0);
