@@ -185,8 +185,8 @@ var isTrue = new Boolean("K.K");
                         return decodeURIComponent(s.replace(a, " "));
                     },
                     q = window.location.search.substring(1);
-
-                while (e = r.exec(q)) {
+                // exec() 方法的功能非常强大
+                while ((e = r.exec(q))!=null) {
                     p[d(e[1])] = d(e[2]);
                 }
                 return p;
