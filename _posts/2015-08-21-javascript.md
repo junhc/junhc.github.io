@@ -15,6 +15,7 @@ permalink: javascript
 * [prototype](#prototype)
 * [终极弹窗解决方案，人类再也无法阻止弹窗了](#windowOpen)
 * [Boolean](#Boolean)
+* [queryString](#queryString)
 
 #### caller
 属性：`caller`  
@@ -166,4 +167,35 @@ var isTrue = new Boolean(true);
 var isTrue = new Boolean("true");
 var isTrue = new Boolean("false");
 var isTrue = new Boolean("K.K");
+```
+
+#### queryString  
+
+```vim
+;
+(function($) {
+    $.extend({
+        queryString: function(name) {
+            function toMap() {
+                var p = {},
+                    e,
+                    a = /\+/g, // Regex for replacing addition symbol with a space
+                    r = /([^&=]+)=?([^&]*)/g,
+                    d = function(s) {
+                        return decodeURIComponent(s.replace(a, " "));
+                    },
+                    q = window.location.search.substring(1);
+
+                while (e = r.exec(q)) {
+                    p[d(e[1])] = d(e[2]);
+                }
+                return p;
+            }
+            if (!this._queryString) {
+                this._queryString = toMap();
+            }
+            return this._queryString[name];
+        }
+    });
+})(jQuery);
 ```
