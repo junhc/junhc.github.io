@@ -37,10 +37,12 @@
   	isAnimated: true
     });
     //////////////////////////////////////
-    ityped.init('#ideal', {
-       strings:["I'm K.K","To Be Full Stack Engineer."],
-       //startDelay: 200,
-       loop: true
-    });
+    if($('#ideal').get(0)){
+      ityped.init('#ideal', {
+         strings:["I'm K.K","To Be Full Stack Engineer."],
+         //startDelay: 200,
+         loop: true
+      });
+    }
   };
 })(jQuery,window);
