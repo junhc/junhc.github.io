@@ -9,15 +9,15 @@ permalink: javascript
 ---
 
 ### 目录
-* [caller](#caller)
-* [callee](#callee)
-* [apply&call](#applycall)
-* [prototype](#prototype)
-* [终极弹窗解决方案，人类再也无法阻止弹窗了](#windowOpen)
-* [Boolean](#Boolean)
-* [queryString](#queryString)
+* [1. caller](#1-caller)
+* [2. callee](#2-callee)
+* [3. apply&call](#3-applycall)
+* [4. prototype](#4-prototype)
+* [5. 终极弹窗解决方案](#5-终极弹窗解决方案)
+* [6. boolean](#6-boolean)
+* [7. 封装请求参数](#7-封装请求参数)
 
-#### caller
+#### 1. caller
 属性：`caller`  
 说明：`func.caller` 返回一个*调用方函数*的引用
 
@@ -39,7 +39,7 @@ handle("K.K");
 //没有函数调用我！
 //["K.K"]
 ```
-#### callee
+#### 2. callee
 属性：`callee`  
 说明：`arguments.callee` 返回正被执行的*函数*对象，callee是arguments的一个属性成员，  
 它表示对函数对象本身的引用
@@ -60,7 +60,7 @@ func();
 //实参长度：0
 //形参长度：2
 ```
-#### apply&call
+#### 3. apply&call
 函数：`apply`，`call`  
 说明：使用`apply(this,arguments)`，`call(this,arg0,arg1,...)`在Sub函数的作用域中调用Super函数，因此调用后Sub函数就拥有了Super函数的所有属性和方法。 
 
@@ -105,10 +105,10 @@ func.apply(new local());
 //local 变量
 ```
 
-#### prototype 
+#### 4. prototype 
 说明：每个函数都有一个prototype属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法。  
 
-### 终极弹窗解决方案，人类再也无法阻止弹窗了  
+#### 5. 终极弹窗解决方案
 ```vim  
 // 跳转
 function redirect(url) {
@@ -150,7 +150,7 @@ function download() {
 }
 ```  
 
-#### Boolean  
+#### 6. boolean  
 说明：如果逻辑对象无初始值或者其值为 0、-0、null、""、false、undefined 或者 NaN，那么对象的值为 false。否则，其值为 true（即使当自变量为字符串 "false" 时）  
 
 ```vim 
@@ -169,8 +169,7 @@ var isTrue = new Boolean("false");
 var isTrue = new Boolean("K.K");
 ```
 
-#### queryString  
-
+#### 7. 封装请求参数  
 ```vim
 ;
 (function($) {
