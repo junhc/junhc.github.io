@@ -17,3 +17,42 @@ permalink: classloading
 3. 当初始化一个类的时候，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化。  
 4. 当虚拟机启动时，用户需要制定一个执行的主类（包含main()方法的那个类），虚拟机会先初始化这个主。
 5. 当使用JDK1.7的动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化。
+
+```vim
+public class SuperClass {
+
+    static {
+        System.out.println("SuperClass init!");
+    }
+
+    public static int value = 123;
+}
+
+public class SubClass extends SuperClass {
+
+    static {
+        System.out.println("SubClass init!");
+    }
+}
+
+public class NotInitialization {
+
+    public static void main(String[] args) {
+        // 被动引用的例子之一
+        // 对于静态字段，只有直接定义这个字段的类才会被初始化。
+        System.out.println(SubClass.value);
+        // SuperClass init!
+        // 123
+
+        // 被动引用的例子之二
+        // 通过数组定义来引用类，不会触发此类的初始化
+        SuperClass[] sca = new SuperClass[10];
+
+        // 被动引用的例子之三
+        // 常量在编译阶段会存入调用类的常量池，本质上并没有直接引用到定义常量的类，因此不会触发此类的初始化
+        System.out.println(SuperClass.HELLO_WORLD);
+        
+        // 一个接口在初始化时，并不要求其父接口全部都完成初始化，只有在真正使用到父接口的时候（如引用接口中定义的常量）才会初始化。
+    }
+}
+```
