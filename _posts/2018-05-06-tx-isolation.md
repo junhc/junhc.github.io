@@ -88,7 +88,7 @@ mysql> select account_id, username, status from account limit 3;
 #### Read Committed (读取提交内容)
 > 这是大多数据库系统的默认隔离级别（`但不是MySQL默认的`）。  
 它满足了隔离的简单定义：一个事务只能看见已经提交事务所做的改变。  
-这种隔离级别也支持所谓的不可重复读（`Nonrepeatable Read`），因为同一事务的其他实例再该实例处理期间可能会有新的Commit，所以同一Select可能返回不同的结果。
+这种隔离级别也支持所谓的`不可重复读（Nonrepeatable Read）`，因为同一事务的其他实例再该实例处理期间可能会有新的Commit，所以同一Select可能返回不同的结果。
 
 ```vim
 # 修改隔离级别
@@ -149,7 +149,7 @@ mysql> select account_id, username, status from account limit 3;
 
 #### Repeatable Read (可重读)
 >`这是MySQL默认的事务隔离级别`，它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。  
-不过理论上，这回导致另一个棘手的问题：幻读（Phantom Read）。  
+不过理论上，这会导致另一个棘手的问题：`幻读（Phantom Read）`。  
 简单的说，幻读指当用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的“幻影”行。InnoDB和Falcon存储引擎，通过多版本并发控制机制解决了该问题。
 
 ```vim
