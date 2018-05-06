@@ -5,7 +5,7 @@ date: 2018-05-06 14:32:48
 description: "理解事务的4种隔离级别"
 categories:
 - MySQL
-permalink: transaction
+permalink: tx-isolation
 ---
 
 ### 目录
