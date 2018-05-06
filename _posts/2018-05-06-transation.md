@@ -13,3 +13,8 @@ permalink: transaction
 * [Read Committed (读取提交内容) ](#错误锦集)
 * [Repeatable Read (可重读) ](#mysql事务隔离级别)
 * [Serializable (可串行化) ](#mysql返回自增长id的四种方法)
+
+#### Read Uncommitted (读取未提交内容)
+#### Read Committed (读取提交内容)
+#### Repeatable Read (可重读)
+#### Serializable (可串行化)
