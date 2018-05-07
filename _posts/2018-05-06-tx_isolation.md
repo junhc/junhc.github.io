@@ -58,7 +58,7 @@ mysql> select account_id, username, status from account limit 3;
 +------------+----------+--------+
 | account_id | username | status |
 +------------+----------+--------+
-|          1 | kk       |     -1 |  ---> `读到了事务B还没有提交的内容`
+|          1 | kk       |     -1 |  ---> '读取到事务B还没有提交的内容'
 |          6 | tanwd    |      0 |
 |          7 | yexk     |      0 |
 +------------+----------+--------+
@@ -74,12 +74,12 @@ mysql> select account_id, username, status from account limit 3;
 |          7 | yexk     |      0 |
 +------------+----------+--------+
 
-# 事务A, 依旧可以读到事务B未提交的内容
+# 事务A, 依旧可以读取到事务B未提交的内容
 mysql> select account_id, username, status from account limit 3;
 +------------+----------+--------+
 | account_id | username | status |
 +------------+----------+--------+
-|          1 | kk       |      0 | ---> `脏读意味着, 所有事务都可以看到其他未提交事务的执行结果`
+|          1 | kk       |      0 | ---> '脏读意味着, 所有事务都可以看到其他未提交事务的执行结果'
 |          6 | tanwd    |      0 |
 |          7 | yexk     |      0 |
 +------------+----------+--------+
@@ -128,7 +128,7 @@ mysql> select account_id, username, status from account limit 3;
 +------------+----------+--------+
 | account_id | username | status |
 +------------+----------+--------+
-|          1 | kk       |      0 |  ---> `并没有读到事务B未提交的内容`
+|          1 | kk       |      0 |  ---> '并没有读取到事务B未提交的内容'
 |          6 | tanwd    |      0 |
 |          7 | yexk     |      0 |
 +------------+----------+--------+
@@ -141,8 +141,8 @@ mysql> select account_id, username, status from account limit 3;
 +------------+----------+--------+
 | account_id | username | status |
 +------------+----------+--------+
-|          1 | kk       |     -1 | ---> `读到了事务B已提交的内容, 这也导致了同一事务中, 执行完全相同的select语句读到不一样的结果`
-|          6 | tanwd    |      0 |
+|          1 | kk       |     -1 | ---> '读取到事务B已提交的内容, '
+|          6 | tanwd    |      0 |      '这也导致同一事务中, 执行完全相同的select语句读取到不一样的内容'
 |          7 | yexk     |      0 |
 +------------+----------+--------+
 ```
@@ -191,7 +191,7 @@ mysql> select account_id, username, status from account limit 3;
 +------------+----------+--------+
 | account_id | username | status |
 +------------+----------+--------+
-|          1 | kk       |      0 | ---> `并没有读取到事务B已提交的内容, 说明解决了不可重复读的问题`
+|          1 | kk       |      0 | ---> '并没有读取到事务B已提交的内容, 说明解决了不可重复读的问题'
 |          6 | tanwd    |      0 |
 |          7 | yexk     |      0 |
 +------------+----------+--------+
@@ -200,7 +200,7 @@ mysql> select account_id, username, status from account limit 3;
 +------------+----------+--------+
 | account_id | username | status |
 +------------+----------+--------+
-|          1 | kk       |     -1 | ---> `只有当事务A提交后, 才可以读取到事务B提交的内容`
+|          1 | kk       |     -1 | ---> '只有当事务A提交后, 才可以读取到事务B提交的内容'
 |          6 | tanwd    |      0 |
 |          7 | yexk     |      0 |
 +------------+----------+--------+
