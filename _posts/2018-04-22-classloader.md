@@ -5,7 +5,7 @@ date: 2018-04-21 14:32:48
 description: "虚拟机类加载机制"
 categories:
 - jvm
-permalink: classloading
+permalink: classloader
 ---
 
 ### 目录
@@ -104,12 +104,28 @@ public class ClassLoaderTest {
         // 我们自定义的类加载的，虽然都来自同一个class文件，但依然是两个独立的类，做对象所属类型
         // 检查时结果为false
         System.out.println(o instanceof com.junhc.ClassLoaderTest);
+        //
+        System.out.println(o.getClass().getClassLoader().getClass().getName());
+        System.out.println(ClassLoaderTest.class.getClassLoader().getClass().getName());
+        System.out.println(System.class.getClassLoader());
+        System.out.println(List.class.getClassLoader());
+        //
+        ClassLoader cl = ClassLoaderTest.class.getClassLoader();
+        while(cl != null){
+            System.out.print(cl.getClass().getName()+"->");
+            cl = cl.getParent();
+        }
+        System.out.println(cl);
     }
 }
 
 //class com.junhc.ClassLoaderTest
 //false
-
+//com.junhc.ClassLoaderTest$1
+//sun.misc.Launcher$AppClassLoader
+//null
+//null
+//sun.misc.Launcher$AppClassLoader->sun.misc.Launcher$ExtClassLoader->null
 ```
 
 #### 双亲委派模型
