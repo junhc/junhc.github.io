@@ -16,6 +16,7 @@ permalink: javascript
 * [5. 终极弹窗解决方案](#5-终极弹窗解决方案)
 * [6. boolean](#6-boolean)
 * [7. 封装请求参数](#7-封装请求参数)
+* [8. 一道ECMAScript6有趣的面试题](#8-一道ecmascript6有趣的面试题)
 
 #### 1. caller
 属性：`caller`  
@@ -197,4 +198,26 @@ var isTrue = new Boolean("K.K");
         }
     });
 })(jQuery);
+```
+
+#### 8. 一道ECMAScript6有趣的面试题
+```vim
+const x = ?;
+if (('a' in x) && !('a' in x)) {
+	console.log('WIN');
+}
+// 输出WIN
+```
+
+```vim
+// 使用ES6代理对象..重写has方法..
+const x = new Proxy({
+   'a': false
+}, {
+   has(target) {
+      return target.a = !target.a;
+   }
+});
+
+// 另辟蹊径, 两个a的语义不一样..半角英文a和全角英文a..咳咳, 只谈思路的话, 很有想法.. 
 ```
