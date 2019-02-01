@@ -56,32 +56,31 @@ INSERT INTO `scores` VALUES (6, 3.65);
 #### 不管分数是否相同，依次排名（1，2，3，4，5，6）
 ```
 SELECT
-	Score,
-	@rank := @rank + 1 AS Rank
+	score,
+	@rank := @rank + 1 AS rank
 FROM
-	( SELECT * FROM Scores ORDER BY Score DESC ) obj,
+	( SELECT * FROM scores ORDER BY score DESC ) obj,
 	(
 SELECT
-	@rank := 0,
-	@score := NULL
+	@rank := 0
 	) r;
 ```
 
 #### 分数相同，并列排名（1，1，2，3，3，4）
 ```
 SELECT
-	Score,
+	score,
 CASE
 
-	WHEN @score = obj.Score THEN
+	WHEN @score = obj.score THEN
 	cast( @rank AS SIGNED )
-	WHEN @score := obj.Score THEN
+	WHEN @score := obj.score THEN
 	@rank := @rank + 1
 	WHEN @score = 0 THEN
 	@rank := @rank + 1
-	END AS Rank
+	END AS rank
 FROM
-	( SELECT * FROM Scores ORDER BY Score DESC ) obj,
+	( SELECT * FROM scores ORDER BY score DESC ) obj,
 	(
 	SELECT
 		@rank := 0,
@@ -92,38 +91,38 @@ FROM
 #### 并列排名，另类解法
 ```
 SELECT
-	Score,
+	score,
 	(
 SELECT
 	count( DISTINCT score )
 FROM
-	Scores
+	scores
 WHERE
 	score >= obj.score
 	) AS Rank
 FROM
-	Scores obj
+	scores obj
 ORDER BY
-	Score DESC;
+	score DESC;
 ```
 
 #### 分数相同，并列排名，同时并列的排名也占一位，依次排名（1，1，3，4，4，5）
 ```
 SELECT
-	Score,
-	@rank := @rank + 1 AS Ephemeral_Rank,
+	score,
+	@rank := @rank + 1 AS ephemeral_rank,
 	@increment :=
 CASE
 
-	WHEN @score = obj.Score THEN
+	WHEN @score = obj.score THEN
 	cast( @increment AS SIGNED )
-	WHEN @score := obj.Score THEN
+	WHEN @score := obj.score THEN
 	@rank
 	WHEN @score = 0 THEN
 	@rank
-	END AS Rank
+	END AS rank
 FROM
-	( SELECT Score FROM Scores ORDER BY Score DESC ) obj,
+	( SELECT score FROM scores ORDER BY score DESC ) obj,
 	(
 	SELECT
 		@rank := 0,
