@@ -14,8 +14,11 @@ table tr {
   border-top:none!important;
   background-color:inherit!important;
 }
-table tr th :first-child, table tr td :first-child {
-  margin-top:!important;
+#calendar a {
+  color:#fff!important;
+}
+#calendar a:hover {
+  border-bottom-color: inherit!important;
 }
 </style>
 <script src='/assets/js/fullcalendar/moment.min.js'></script>
@@ -29,13 +32,13 @@ $(function() {
     locale: 'zh-cn',
     events: [
       {
-        title: '12分钟热力Tabata',
+        title: '12分钟Tabata',
         start: '2019-02-18 20:30',
       },{
-        title: '跳绳500次',
+        title: '500次跳绳',
         start: '2019-02-18 21:00',
       },{
-        title: '平板支撑1分钟',
+        title: '1分钟平板支撑',
         start: '2019-02-18 22:00',
       }
     ]
