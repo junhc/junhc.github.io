@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Keep"
+date: 2019-02-18 21:37:35
+description: "Keep"
+categories:
+- keep
+permalink: keep
+---
+<link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
+<script>
+  $(function() {
+    $('#calendar').fullCalendar({
+      editable: false,
+      eventLimit: true,
+      events: [
+        {
+          title: '12分钟热力Tabata',
+          start: '2019-02-18 20:30',
+        },{
+          title: '跳绳500次',
+          start: '2019-02-18 21:00',
+        }
+      ]
+    });
+  });
+</script>
+<div id='calendar'></div>
