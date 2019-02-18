@@ -11,11 +11,13 @@ permalink: keep
 <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='/assets/js/fullcalendar/moment.min.js'></script>
 <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
+<script src='/assets/js/fullcalendar/zh-cn.js'></script>
 <script>
 $(function() {
   $('#calendar').fullCalendar({
     editable: false,
     eventLimit: true,
+    locale: 'zh-cn',
     events: [
       {
         title: '12分钟热力Tabata',
