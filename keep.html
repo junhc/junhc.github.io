@@ -1,0 +1,58 @@
+---
+layout: default
+title: "Keep"
+permalink: keep
+---
+<div class="page-content wc-container">
+
+	<div class="post">
+		<h1>Keep</h1>
+		<p class="post-meta">
+	    <span class="post-date">
+    	{{ '2019-02-18' | date: "%b %-d, %Y" }}
+	    </span>
+		</p>
+		<div class="post">
+      <link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+      <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+      <style>
+      table tr {
+        border-top:none!important;
+        background-color:inherit!important;
+      }
+      #calendar a {
+        color:#fff!important;
+      }
+      #calendar a:hover {
+        border-bottom-color: inherit!important;
+      }
+      </style>
+      <script src='/assets/js/fullcalendar/moment.min.js'></script>
+      <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
+      <script src='/assets/js/fullcalendar/zh-cn.js'></script>
+      <script>
+      $(function() {
+        $('#calendar').fullCalendar({
+          editable: false,
+          eventLimit: true,
+          locale: 'zh-cn',
+          events: [
+            {
+              title: '12分钟Tabata',
+              start: '2019-02-18 20:30',
+            },{
+              title: '500次跳绳',
+              start: '2019-02-18 21:00',
+            },{
+              title: '1分钟平板支撑',
+              start: '2019-02-18 22:00',
+            }
+          ]
+        });
+      });
+      </script>
+      <div id='calendar'></div>
+		</div>
+	</div>
+
+</div>
