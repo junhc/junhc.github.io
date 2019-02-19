@@ -6,7 +6,7 @@
         <title>{% if page.title %}{{ page.title }}{% else %}{% endif %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta itemprop="keywords" content="{% if page.categories %}{{ page.categories | join: ',' }}{% else %}{% endif %}" />
-	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{% endif %}">
+	      <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{% endif %}">
         <link rel="canonical"
         href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
         <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
@@ -18,17 +18,17 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-  <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>             
-	<script type="text/javascript">
-	var $CONFIG = {};
-	$CONFIG['islogin'] = '0';
-	$CONFIG['version'] = '';
-	$CONFIG['lang'] = 'zh-cn';
-	$CONFIG['basePath'] = '{{ site.url }}';
-	$CONFIG['cookieKey'] = '__uuid';
-	$CONFIG['page'] = {% if page.url == '/' %}'index'{% else %}'{{ page.url | replace:'/','' }}'{% endif %};
-	$CONFIG['firebase'] = '{{ site.junhc.firebase }}';
-	</script>
+        <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+      	<script type="text/javascript">
+      	var $CONFIG = {};
+      	$CONFIG['islogin'] = '0';
+      	$CONFIG['version'] = '';
+      	$CONFIG['lang'] = 'zh-cn';
+      	$CONFIG['basePath'] = '{{ site.url }}';
+      	$CONFIG['cookieKey'] = '__uuid';
+      	$CONFIG['page'] = {% if page.url == '/' %}'index'{% else %}'{{ page.url | replace:'/','' }}'{% endif %};
+      	$CONFIG['firebase'] = '{{ site.junhc.firebase }}';
+      	</script>
     </head>
     <body class="theme-base-01">
         <header class="main-header">
@@ -52,7 +52,7 @@
         </footer>
         <script src="{{ site.baseurl }}/assets/js/ityped.min.js"></script>
         <script src="{{ site.baseurl }}/assets/js/jquery.masonry.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/js/firebase.js"></script>
+        <!-- <script src="{{ site.baseurl }}/assets/js/firebase.js"></script> -->
         <script src="{{ site.baseurl }}/assets/js/app.js?v=2017"></script>
     </body>
 </html>
