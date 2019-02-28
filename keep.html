@@ -49,17 +49,11 @@ permalink: keep
           eventLimit: true,
 					// businessHours: true,
           locale: 'zh-cn',
-					// eventRender: function(eventObj, $el) {
-					// 	  if(eventObj.description){
-					// 			  $el.popover({
-					// 			  title: eventObj.title,
-					// 			  content: eventObj.description,
-					// 			  trigger: 'hover',
-					// 			  placement: 'top',
-					// 			  container: 'body'
-					// 			  });
-					// 	  }
-					// },
+					eventRender: function(event, element) {
+						  if(event.description){
+								 $(element).find('span.fc-title').attr('title', event.description);
+						  }
+					},
           events: [
 						{
 							title: '☹体重: 78kg',
