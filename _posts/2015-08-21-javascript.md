@@ -8,7 +8,7 @@ categories:
 permalink: javascript
 ---
 
-### 目录
+#### 目录
 * [1. caller](#1-caller)
 * [2. callee](#2-callee)
 * [3. apply&call](#3-applycall)
@@ -18,7 +18,7 @@ permalink: javascript
 * [7. 封装请求参数](#7-封装请求参数)
 * [8. 一道ECMAScript6有趣的面试题](#8-一道ecmascript6有趣的面试题)
 
-#### 1. caller
+##### 1. caller
 属性：`caller`  
 说明：`func.caller` 返回一个*调用方函数*的引用
 
@@ -40,7 +40,7 @@ handle("K.K");
 //没有函数调用我！
 //["K.K"]
 ```
-#### 2. callee
+##### 2. callee
 属性：`callee`  
 说明：`arguments.callee` 返回正被执行的*函数*对象，callee是arguments的一个属性成员，  
 它表示对函数对象本身的引用
@@ -61,9 +61,9 @@ func();
 //实参长度：0
 //形参长度：2
 ```
-#### 3. apply&call
+##### 3. apply&call
 函数：`apply`，`call`  
-说明：使用`apply(this,arguments)`，`call(this,arg0,arg1,...)`在Sub函数的作用域中调用Super函数，因此调用后Sub函数就拥有了Super函数的所有属性和方法。 
+说明：使用`apply(this,arguments)`，`call(this,arg0,arg1,...)`在Sub函数的作用域中调用Super函数，因此调用后Sub函数就拥有了Super函数的所有属性和方法。
 
 ```vim
 function Super(){
@@ -99,17 +99,17 @@ function func(){
 }
 
 func();
-func.apply(window); 
+func.apply(window);
 func.apply(new local());
 //global 变量
 //global 变量
 //local 变量
 ```
 
-#### 4. prototype 
+##### 4. prototype
 说明：每个函数都有一个prototype属性，这个属性是一个对象，它的用途是包含可以由特定类型的所有实例共享的属性和方法。  
 
-#### 5. 终极弹窗解决方案
+##### 5. 终极弹窗解决方案
 ```vim  
 // 跳转
 function redirect(url) {
@@ -151,10 +151,10 @@ function download() {
 }
 ```  
 
-#### 6. boolean  
+##### 6. boolean  
 说明：如果逻辑对象无初始值或者其值为 0、-0、null、""、false、undefined 或者 NaN，那么对象的值为 false。否则，其值为 true（即使当自变量为字符串 "false" 时）  
 
-```vim 
+```vim
 //返回false
 var isFalse = new Boolean();
 var isFalse = new Boolean(0);
@@ -170,7 +170,7 @@ var isTrue = new Boolean("false");
 var isTrue = new Boolean("K.K");
 ```
 
-#### 7. 封装请求参数  
+##### 7. 封装请求参数  
 ```vim
 ;
 (function($) {
@@ -200,7 +200,7 @@ var isTrue = new Boolean("K.K");
 })(jQuery);
 ```
 
-#### 8. 一道ECMAScript6有趣的面试题
+##### 8. 一道ECMAScript6有趣的面试题
 ```vim
 const x = ?;
 if (('a' in x) && !('a' in x)) {
@@ -219,5 +219,5 @@ const x = new Proxy({
    }
 });
 
-// 另辟蹊径, 两个a的语义不一样..半角英文a和全角英文a..咳咳, 只谈思路的话, 很有想法.. 
+// 另辟蹊径, 两个a的语义不一样..半角英文a和全角英文a..咳咳, 只谈思路的话, 很有想法..
 ```

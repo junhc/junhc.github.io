@@ -8,7 +8,7 @@ categories:
 permalink: concurrenthashmap
 ---  
 
-### ConcurrentHashMap  
+##### ConcurrentHashMap  
 
 HashMap是非线程安全的。  
 
@@ -21,7 +21,7 @@ ConcurrentHashMap是由Segment数组结构和HashEntry数组结构组成。Segme
 
 ![](/assets/img/concurrenthashmap.png)
 
-#### Segment数据结构  
+###### Segment数据结构  
 
 ```vim
 static final class Segment<K,V> extands ReentrantLock implements Serializable {
@@ -33,7 +33,7 @@ static final class Segment<K,V> extands ReentrantLock implements Serializable {
 }
 ```
 
-#### HashEntry  
+###### HashEntry  
 
 ```vim
 static final class HashEntry<K,V> {
@@ -45,9 +45,9 @@ static final class HashEntry<K,V> {
 ```
 
 ConcurrentHashMap初始化方法是通过initialCapacity，loadFactor, concurrencyLevel几个参数来初始化segments数组，段偏移量segmentShift，段掩码segmentMask和每个segment里的HashEntry数组 。  
-初始化segments数组。让我们来看一下初始化segmentShift，segmentMask和segments数组的源代码。 
+初始化segments数组。让我们来看一下初始化segmentShift，segmentMask和segments数组的源代码。
 
-#### ConcurrentHashMap的初始化  
+###### ConcurrentHashMap的初始化  
 
 ```vim
 public ConcurrentHashMap(int initialCapacity,
@@ -58,7 +58,7 @@ public ConcurrentHashMap(int initialCapacity,
                         ) {
     if(!(localFactor > 0) || initialCapacity < 0 || concurrencyLevel <= 0)
       throw new IllegalArgumentException();
-      
+
     if(concurrencyLevel > MAX_SEGMENTS)
       concurrencyLevel = MAX_SEGMENTS;
     // Find power-of-two sizes best matching arguments
@@ -77,7 +77,7 @@ public ConcurrentHashMap(int initialCapacity,
 由上面的代码可知segments数组的长度ssize通过concurrencyLevel计算得出。为了能通过按位与的哈希算法来定位segments数组的索引，必须保证segments数组的长度是2的N次方（power-of-two size），所以必须计算出一个是大于或等于concurrencyLevel的最小的2的N次方值来作为segments数组的长度。假如concurrencyLevel等于14，15或16，ssize都会等于16，即容器里锁的个数也是16。注意concurrencyLevel的最大大小是65535，意味着segments数组的长度最大为65536，对应的二进制是16位。  
 初始化segmentShift和segmentMask。这两个全局变量在定位segment时的哈希算法里需要使用，sshift等于ssize从1向左移位的次数，在默认情况下concurrencyLevel等于16，1需要向左移位移动4次，所以sshift等于4。segmentShift用于定位参与hash运算的位数，segmentShift等于32减sshift，所以等于28，这里之所以用32是因为ConcurrentHashMap里的hash()方法输出的最大数是32位的，后面的测试中我们可以看到这点。segmentMask是哈希运算的掩码，等于ssize减1，即15，掩码的二进制各个位的值都是1。因为ssize的最大长度是65536，所以segmentShift最大值是16，segmentMask最大值是65535，对应的二进制是16位，每个位都是1。  
 
-初始化每个Segment。输入参数initialCapacity是ConcurrentHashMap的初始化容量，loadfactor是每个segment的负载因子，在构造方法里需要通过这两个参数来初始化数组中的每个segment。 
+初始化每个Segment。输入参数initialCapacity是ConcurrentHashMap的初始化容量，loadfactor是每个segment的负载因子，在构造方法里需要通过这两个参数来初始化数组中的每个segment。
 
 ```vim  
     ...
@@ -89,7 +89,7 @@ public ConcurrentHashMap(int initialCapacity,
     int cap = 1;
     while (cap < c)
       cap <<= 1;
-    
+
     for (int i = 0; i < this.segments.length; ++i)
       this.segments[i] = new Segment<K,V>(cap, loadFactor);
 }
@@ -97,7 +97,7 @@ public ConcurrentHashMap(int initialCapacity,
 
 上面代码中的变量cap就是segment里HashEntry数组的长度，它等于initialCapacity除以ssize的倍数c，如果c大于1，就会取大于等于c的2的N次方值，所以cap不是1，就是2的N次方。segment的容量threshold＝(int)cap*loadFactor，默认情况下initialCapacity等于16，loadfactor等于0.75，通过运算cap等于1，threshold等于零。  
 
-### 定位Segment  
+###### 定位Segment  
 
 既然ConcurrentHashMap使用分段锁Segment来保护不同段的数据，那么在插入和获取元素的时候，必须先通过哈希算法定位到Segment。可以看到ConcurrentHashMap会首先使用Wang/Jenkins hash的变种算法对元素的hashCode进行一次再哈希。  
 
@@ -121,7 +121,7 @@ final Segment<K,V> segmentFor(int hash) {
 
 默认情况下segmentShift为28，segmentMask为15，再哈希后的数最大是32位二进制数据，向右无符号移动28位，意思是让高4位参与到hash运算中， (hash >>> segmentShift) & segmentMask的运算结果分别是4，15，7和8，可以看到hash值没有发生冲突。  
 
-#### ConcurrentHashMap的get操作  
+###### ConcurrentHashMap的get操作  
 Segment的get操作实现非常简单和高效。先经过一次再哈希，然后使用这个哈希值通过哈希运算定位到segment，再通过哈希算法定位到元素  
 
 ```vim  
@@ -145,7 +145,7 @@ hash >>> segmentShift) & segmentMask//定位Segment所使用的hash算法
 int index = hash & (tab.length - 1);// 定位HashEntry所使用的hash算法
 ```  
 
-#### ConcurrentHashMap的put操作 
+###### ConcurrentHashMap的put操作
 
 由于put方法里需要对共享变量进行写入操作，所以为了线程安全，在操作共享变量时必须得加锁。Put方法首先定位到Segment，然后在Segment里进行插入操作。插入操作需要经历两个步骤，第一步判断是否需要对Segment里的HashEntry数组进行扩容，第二步定位添加元素的位置然后放在HashEntry数组里。  
 
@@ -153,7 +153,7 @@ int index = hash & (tab.length - 1);// 定位HashEntry所使用的hash算法
 
 如何扩容。扩容的时候首先会创建一个两倍于原容量的数组，然后将原数组里的元素进行再hash后插入到新的数组里。为了高效ConcurrentHashMap不会对整个容器进行扩容，而只对某个segment进行扩容。  
 
-#### ConcurrentHashMap的size操作  
+###### ConcurrentHashMap的size操作  
 
 如果我们要统计整个ConcurrentHashMap里元素的大小，就必须统计所有Segment里元素的大小后求和。Segment里的全局变量count是一个volatile变量，那么在多线程场景下，我们是不是直接把所有Segment的count相加就可以得到整个ConcurrentHashMap大小了呢？不是的，虽然相加时可以获取每个Segment的count的最新值，但是拿到之后可能累加前使用的count发生了变化，那么统计结果就不准了。所以最安全的做法，是在统计size的时候把所有Segment的put，remove和clean方法全部锁住，但是这种做法显然非常低效。 因为在累加count操作过程中，之前累加过的count发生变化的几率非常小，所以ConcurrentHashMap的做法是先尝试2次通过不锁住Segment的方式来统计各个Segment大小，如果统计的过程中，容器的count发生了变化，则再采用加锁的方式来统计所有Segment的大小。  
 

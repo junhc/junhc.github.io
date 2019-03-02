@@ -7,8 +7,8 @@ categories:
 -
 permalink: error-hosts-no-localhost
 ---
-#### 缘起
-> 有一次清理hosts文件, 觉得`localhost`相关的配置没什么用, 就给删除了. 
+##### 缘起
+> 有一次清理hosts文件, 觉得`localhost`相关的配置没什么用, 就给删除了.
 > 结果在idea中导入maven项目时, 一直提示: Unable to import maven project: See logs for details 错误.
 
 ```vim
@@ -18,15 +18,15 @@ permalink: error-hosts-no-localhost
 ::1             localhost
 ```
 
-#### 解决过程
+##### 解决过程
 - 在idea的Help菜单下, 点击Show Log in Finder, 打开日志发现如下错误  
 
 ```vim
-Caused by: java.rmi.RemoteException: Cannot start maven service; nested exception is: 
-	java.rmi.ConnectIOException: Exception creating connection to: localhost; nested exception is: 
+Caused by: java.rmi.RemoteException: Cannot start maven service; nested exception is:
+	java.rmi.ConnectIOException: Exception creating connection to: localhost; nested exception is:
 	java.net.SocketException: Permission denied (connect failed)
   ...
-Caused by: java.rmi.ConnectIOException: Exception creating connection to: localhost; nested exception is: 
+Caused by: java.rmi.ConnectIOException: Exception creating connection to: localhost; nested exception is:
 	java.net.SocketException: Permission denied (connect failed)
   ...
 Caused by: java.net.SocketException: Permission denied (connect failed)

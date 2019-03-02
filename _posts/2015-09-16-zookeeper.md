@@ -8,7 +8,7 @@ categories:
 permalink: zookeeper
 ---
 
-#### Maven依赖写法
+##### Maven依赖写法
 ```xml
 <dependency>
     <groupId>org.apache.zookeeper</groupId>
@@ -23,7 +23,7 @@ permalink: zookeeper
 </dependency>
 ```
 
-#### 客户端脚本
+##### 客户端脚本
 
 ```vim
 #启动客户端
@@ -48,7 +48,5 @@ set path data [version]
 delete path [version]
 ```
 
-#### 相关资料
+##### 相关资料
 * [ZkClient源码](https://github.com/sgroschupf/zkclient)
-
-
