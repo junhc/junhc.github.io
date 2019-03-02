@@ -73,7 +73,7 @@
 }
 .container .block-small{
 	width:160px;
-} 
+}
 .container .block-medium{
 	width:174px;
 }
@@ -103,4 +103,7 @@
 }
 .container .thumbs img{
 	float:left;
+}
+div.page-content li>ul{
+	padding: 0!important;
 }
