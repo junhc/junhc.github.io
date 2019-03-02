@@ -459,6 +459,10 @@ div.page-content {
   }
 }
 
+div.page-content li>ul{
+	padding: 0!important;
+}
+
 .no-svg div.page-content ul li {
   background: url(./images/bullet.png);
   @include font-size(13px);
