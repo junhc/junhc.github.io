@@ -13,7 +13,138 @@ permalink: synchronized
 > `synchronized`实现同步的基础：Java中的每一个对象都可以作为锁，具体表现为以下3中形式。
 
 * 对于普通同步方法，锁是当前实例对象。
+```vim
+public class SynchronizedTest {
+
+    Object lock = new Object();
+
+    /**
+     * 形式1
+     */
+    public synchronized void one() {
+        perfectPrint("one");
+    }
+
+    /**
+     * 形式2,作用域等同于形式1
+     */
+    public void two() {
+        synchronized (lock) {
+            perfectPrint("two");
+        }
+    }
+
+    /**
+     * 形式3，作用域等同于前面两种
+     */
+    public void three() {
+        synchronized (this) {
+            perfectPrint("three");
+        }
+    }
+
+    public void perfectPrint(String s) {
+        System.out.println(Thread.currentThread().getId() + ":" + s);
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+
+        }
+    }
+
+    public static void main(String[] args) {
+        final SynchronizedTest s1 = new SynchronizedTest();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                s1.one();
+            }
+        });
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                s1.two();
+            }
+        });
+        Thread t3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                s1.three();
+            }
+        });
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+```
 * 对于静态同步方法，锁是当前类的Class对象。
+```vim
+public class SynchronizedTest {
+
+    static Object lock = new Object();
+
+    /**
+     * 形式1
+     */
+    public synchronized static void one() {
+        perfectPrint("one");
+    }
+
+    /**
+     * 形式2,作用域等同于形式1
+     */
+    public void two() {
+        synchronized (lock) {
+            perfectPrint("two");
+        }
+    }
+
+    /**
+     * 形式3，作用域等同于前面两种
+     */
+    public void three() {
+        synchronized (SynchronizedTest.class) {
+            perfectPrint("three");
+        }
+    }
+
+    public static void perfectPrint(String s) {
+        System.out.println(Thread.currentThread().getId() + ":" + s);
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+
+        }
+    }
+
+    public static void main(String[] args) {
+        final SynchronizedTest s1 = new SynchronizedTest();
+        final SynchronizedTest s2 = new SynchronizedTest();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SynchronizedTest.one();
+            }
+        });
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                s1.two();
+            }
+        });
+        Thread t3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                s2.three();
+            }
+        });
+        t3.start();
+        t1.start();
+        t2.start();
+    }
+}
+```
 * 对于同步方法块，锁是`synchronized`括号里配置的对象。
 
 > 当一个线程试图访问同步代码块时，它首先必须得到锁，退出或抛出异常时必须释放锁。  
@@ -89,3 +220,7 @@ public synchronized void commonMethod();
 如果没有设置，则使用`CAS`竞争锁，如果设置了，则尝试使用`CAS`将对象头的偏向锁指向当前线程。  
 > **偏向锁使用了一种等到竞争出现才释放锁的机制。**  
 > 通过JVM参数关闭偏向锁：`-XX:UseBiasedLocking=false`，那么程序默认会进入轻量级锁状态。
+
+##### 参考资料
+* [Synchronized的源码分析](https://mp.weixin.qq.com/s/moPPjs-A4ZAUxamMMTOeKQ)
+* [Synchronized原理分析](https://mp.weixin.qq.com/s/jGETAozxhmmt8qkU5O93Pw)
