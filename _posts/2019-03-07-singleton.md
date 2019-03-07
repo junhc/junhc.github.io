@@ -10,8 +10,10 @@ permalink: singleton
 ---
 
 ##### 基于`volatile`的解决方案
+
 ```vim
 public class SafeDoubleCheckedLocking {
+
   private volatile static Instance instance;
 
   public static Instance getInstance() {
@@ -28,6 +30,7 @@ public class SafeDoubleCheckedLocking {
       }
     }
   }
+
 }
 ```
 
@@ -37,6 +40,7 @@ public class SafeDoubleCheckedLocking {
 
 ```vim
 public class InstanceFactory {
+
   private static class InstanceHolder {
     public static Instance instance = new Instance();
   }
@@ -44,11 +48,11 @@ public class InstanceFactory {
   public static Instance getInstance() {
     return InstanceHolder.instance; // 这里将导致 InstanceHolder 类被初始化
   }
+
 }
 ```
 > Java语言规范，在首次发生下列任意一种情况时，一个类或接口类型T将被立即初始化。  
-* T是一个类，且一个T类型的实例被创建
-* T是一个类，且T中声明的一个静态方法被调用
-* T中声明的一个静态字段被赋值
-* T中声明的一个静态字段被使用，且这个字段不是一个常量字段
-* T是一个顶级类，且一个断言语句嵌套在T内被执行
+> 2) T是一个类，且T中声明的一个静态方法被调用  
+> 3) T中声明的一个静态字段被赋值  
+> 4) T中声明的一个静态字段被使用，且这个字段不是一个常量字段  
+> 5) T是一个顶级类，且一个断言语句嵌套在T内被执行  
