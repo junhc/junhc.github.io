@@ -1,116 +1,26 @@
 ---
 layout: post
-title: "Java基础"
+title: "Array与List"
 date: 2017-03-31 00:00:00
-description: "Java基础"
+description: "Array与List"
 categories:
 - java
-permalink: java
+permalink: /java/array_and_list
 ---
 
 ##### 目录
-* [1. 深究字符串String类](#1-深究字符串string类)
-* [2. 关于ArrayList常见问题](#2-关于arraylist常见问题)
-* [3. LinkedList](#3-linkedlist)
+* [1. 关于ArrayList常见问题](#1-关于arraylist常见问题)
+* [2. LinkedList](#2-linkedlist)
 
-##### 1. 深究字符串String类  
-###### 1.1 重载运算符 “+” 与 StringBuilder 的冤缘
-```vim
-public class T {
-    public static void main(String[] args) {
-       String a = "-";
-       String b = "123" + a + "456" + a + 789;
-       System.out.println(b);
-    }
-}
 
-// 使用JDK自带javap命令生成字节码 javap -c T.class
-
-public class T {
-  public T();
-    Code:
-       0: aload_0
-       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
-       4: return
-
-  public static void main(java.lang.String[]);
-    Code:
-       0: ldc           #2                  // String -
-       2: astore_1
-       3: new           #3                  // class java/lang/StringBuilder -- 编译器自动引用java.lang.StringBuilder类, 并实例化了一个StringBuilder对象
-       6: dup
-       7: invokespecial #4                  // Method java/lang/StringBuilder."<init>":()V
-      10: ldc           #5                  // String 123 -- 每个运算符 "+" 调用一次 append 方法
-      12: invokevirtual #6                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      15: aload_1
-      16: invokevirtual #6                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      19: ldc           #7                  // String 456
-      21: invokevirtual #6                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      24: aload_1
-      25: invokevirtual #6                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      28: sipush        789
-      31: invokevirtual #8                  // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
-      34: invokevirtual #9                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String; -- 最后调用 toString 方法, 返回String
-      37: astore_2
-      38: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
-      41: aload_2
-      42: invokevirtual #11                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-      45: return
-}
-
-// 再看看循环使用运算符 "+"  
-
-public class T {
-    public static void main(String[] args) {
-       String a = "";
-       for(int i=0; i<10; i++) {
-          a += i;
-       }
-       System.out.println(a);
-    }
-}
-
-public class T {
-  public T();
-    Code:
-       0: aload_0
-       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
-       4: return
-
-  public static void main(java.lang.String[]);
-    Code:
-       0: ldc           #2                  // String
-       2: astore_1
-       3: iconst_0
-       4: istore_2
-       5: iload_2 -- 循环开始..
-       6: bipush        10
-       8: if_icmpge     36
-      11: new           #3                  // class java/lang/StringBuilder -- 每次循环都会实例化一个StringBuilder对象
-      14: dup
-      15: invokespecial #4                  // Method java/lang/StringBuilder."<init>":()V
-      18: aload_1
-      19: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
-      22: iload_2
-      23: invokevirtual #6                  // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
-      26: invokevirtual #7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
-      29: astore_1
-      30: iinc          2, 1
-      33: goto          5  -- 跳转到第5行..
-      36: getstatic     #8                  // Field java/lang/System.out:Ljava/io/PrintStream;
-      39: aload_1
-      40: invokevirtual #9                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-      43: return
-}
-```
-
-##### 2. 关于ArrayList常见问题   
-###### 2.1 ArrayList的扩容机制  
+##### 1. 关于ArrayList常见问题   
+###### 1.1 ArrayList的扩容机制  
 
 ```vim
 public class ArrayList<E> extends AbstractList<E>
         implements List<E>, RandomAccess, Cloneable, java.io.Serializable
 {
+    // 默认容纳大小
     private static final int DEFAULT_CAPACITY = 10;
     private static final Object[] EMPTY_ELEMENTDATA = {};
     private transient Object[] elementData;
@@ -120,6 +30,20 @@ public class ArrayList<E> extends AbstractList<E>
     // 继承自AbstractList, 记录size变化的次数
     protected transient int	modCount;
     ...
+
+    public ArrayList(int initialCapacity) {
+        super();
+        if (initialCapacity < 0)
+          throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+        this.elementData = new Object[initialCapacity];
+    }
+
+    // 当使用无参构造方法初始化ArrayList对象时，会在首次调用add方法时，生成一个长度为10的Object类型数组。
+    public ArrayList() {
+        super();
+        this.elementData = EMPTY_ELEMENTDATA;
+    }
+
     public boolean add(E e) {
         ensureCapacityInternal(size + 1);  // Increments modCount!!
         elementData[size++] = e;
@@ -195,23 +119,44 @@ public class ArrayList<E> extends AbstractList<E>
         elementData[--size] = null; // clear to let GC do its work
     }
 }
-
-public final class System {
-   /**
-   * 源数组中位置在 srcPos 到 srcPos+length-1 之间的元素被复制到目标数组中的 destPos 到 destPos+length-1 位置.
-   * @param      src      源数组.
-   * @param      srcPos   源数组中的起始位置, 若 srcPos+length 大于 src.length，则抛出 IndexOutOfBoundsException 异常
-   * @param      dest     目标数组.
-   * @param      destPos  目标数组中的起始位置, 若 destPos+length 大于 dest.length，则抛出 IndexOutOfBoundsException 异常
-   * @param      length   要复制的数组元素的数量.
-   */
-   public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length){}
-}
 ```
-###### 2.2 ArrayList是实现了基于动态数组的数据结构，因为地址连续，一旦数据存储好了，查询操作效率会比较高，但插入和删除操作时，要移动数据效率比较低
+###### 1.2. ArrayList是实现了基于动态数组的数据结构，因为地址连续，一旦数据存储好了，查询操作效率会比较高，但插入和删除操作时，要移动数据效率比较低
+###### 1.3. 当传递ArrayList到某个方法中，或者某个方法返回ArrayList，什么时候要考虑安全隐患？如果修复呢？
+> 如果Array在没有被复制的情况下直接被分配给成员变量，就会发生当原始的数组被改变时，传递到这个方法中的数组也会改变。
 
-##### 3. LinkedList  
-###### 3.1 LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低
+```vim
+public void set(String[] array) {
+  this.array = array;
+}
+
+// 修复安全隐患
+public void set(String[] array) {
+  if (array == null) {
+    this.array = new Stringp[0];
+  } else {
+    this.array = Arrays.copayOf(array, array.length);
+  }
+}  
+```
+
+###### 1.4. 如何复制一个ArrayList到另一个ArrayList中去？
+```vim
+// 1. 使用`clone()`方法
+ArrayList newArray = oldArray.clone();
+// 2. 使用ArrayList构造方法
+ArrayList newArray = new ArrayList(oldArray);
+// 3. 使用Collections.copy()方法
+List<String> src = new ArrayList<>();
+src.add("1");
+src.add("1");
+src.add("1");
+// 初始化一个`size = 3`的空数组，否则会报错
+List<String> dest = new ArrayList<>(Arrays.asList(new String[src.size()]));
+Collections.copy(dest, src);
+```
+
+##### 2. LinkedList  
+###### 2.1. LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低
 ```vim
 public class LinkedList<E>
     extends AbstractSequentialList<E>
@@ -331,5 +276,18 @@ public class LinkedList<E>
     }    
 }
 ```
-###### 适用场景分析
-> 当需要对数据进行对此访问的情况下选用ArrayList，当需要对数据进行多次增加删除修改时采用LinkedList
+
+##### 小知识
+```vim
+public final class System {
+   /**
+   * 源数组中位置在 srcPos 到 srcPos+length-1 之间的元素被复制到目标数组中的 destPos 到 destPos+length-1 位置.
+   * @param      src      源数组.
+   * @param      srcPos   源数组中的起始位置, 若 srcPos+length 大于 src.length，则抛出 IndexOutOfBoundsException 异常
+   * @param      dest     目标数组.
+   * @param      destPos  目标数组中的起始位置, 若 destPos+length 大于 dest.length，则抛出 IndexOutOfBoundsException 异常
+   * @param      length   要复制的数组元素的数量.
+   */
+   public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length){}
+}
+```
