@@ -221,6 +221,8 @@ public synchronized void commonMethod();
 > **偏向锁使用了一种等到竞争出现才释放锁的机制。**  
 > 通过JVM参数关闭偏向锁：`-XX:UseBiasedLocking=false`，那么程序默认会进入轻量级锁状态。
 
+![](/assets/img/Synchronized源码分析.png)
+
 ##### 参考资料
 * [Synchronized的源码分析](https://mp.weixin.qq.com/s/moPPjs-A4ZAUxamMMTOeKQ)
 * [Synchronized原理分析](https://mp.weixin.qq.com/s/jGETAozxhmmt8qkU5O93Pw)
