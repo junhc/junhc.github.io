@@ -10,11 +10,19 @@ permalink: /java/array_and_list
 
 ##### 目录
 * [1. 关于ArrayList常见问题](#1-关于arraylist常见问题)
+  * [1.1 ArrayList的扩容机制](#1-1-ArrayList的扩容机制)
+  * [1.2. ArrayList是实现了基于动态数组的数据结构，因为地址连续，一旦数据存储好了，查询操作效率会比较高，但插入和删除操作时，要移动数据效率比较低](#1-2-ArrayList是实现了基于动态数组的数据结构，因为地址连续，一旦数据存储好了，查询操作效率会比较高，但插入和删除操作时，要移动数据效率比较低)
+  * [1.3. 当传递ArrayList到某个方法中，或者某个方法返回ArrayList，什么时候要考虑安全隐患？如果修复呢？](#1-3-当传递ArrayList到某个方法中，或者某个方法返回ArrayList，什么时候要考虑安全隐患？如果修复呢？)
+  * [1.4. 如何复制一个ArrayList到另一个ArrayList中去？](#1-4-如何复制一个ArrayList到另一个ArrayList中去？)
+  * [1.5. 理解fail-fast原理](#1-5-理解fail-fast原理)
+  * [1.6. 使用CopyOnWriteArrayList解决fail-fast问题](#1-6-使用CopyOnWriteArrayList解决fail-fast问题)
 * [2. LinkedList](#2-linkedlist)
+  * [2.1. LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低](#2-1-LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低)
+* [小知识](#小知识)
 
 
 ##### 1. 关于ArrayList常见问题   
-###### 1.1 ArrayList的扩容机制  
+###### 1.1. ArrayList的扩容机制  
 
 ```vim
 public class ArrayList<E> extends AbstractList<E>
@@ -154,6 +162,68 @@ src.add("1");
 List<String> dest = new ArrayList<>(Arrays.asList(new String[src.size()]));
 Collections.copy(dest, src);
 ```
+###### 1.5. 理解fail-fast原理
+```vim
+public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
+  ...
+  //
+  protected transient int modCount = 0;
+  private class Itr implements Iterator<E> {
+
+    int cursor = 0;
+
+    int lastRet = -1;
+
+    // 修改数的记录值
+    // 每次新建Itr()对象时，都会保存新建该对象时对应的modCount
+    // 以后每次遍历List中的元素时，都会比较expectedModCount与modCount是否相等
+    // 若不相等，则抛出ConcurrentModificationException异常，产生fail-fast事件
+    int expectedModCount = modCount;
+
+    public boolean hasNext() {
+        return cursor != size();
+    }
+
+    public E next() {
+        // 获取下一个元素之前，都会判断“新建Itr对象时保存的modCount”和“当前的modeCount”是否相等
+        checkForComodification();
+        try {
+            int i = cursor;
+            E next = get(i);
+            lastRet = i;
+            cursor = i + 1;
+            return next;
+        } catch (IndexOutOfBoundsException e) {
+            checkForComodification();
+            throw new NoSuchElementException();
+        }
+    }
+
+    public void remove() {
+        if (lastRet < 0)
+            throw new IllegalStateException();
+        checkForComodification();
+
+        try {
+            AbstractList.this.remove(lastRet);
+            if (lastRet < cursor)
+                cursor--;
+            lastRet = -1;
+            expectedModCount = modCount;
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConcurrentModificationException();
+        }
+    }
+
+    final void checkForComodification() {
+        if (modCount != expectedModCount)
+            throw new ConcurrentModificationException();
+    }
+  }
+}  
+```
+
+###### 1.6. 使用CopyOnWriteArrayList解决fail-fast问题
 
 ##### 2. LinkedList  
 ###### 2.1. LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低

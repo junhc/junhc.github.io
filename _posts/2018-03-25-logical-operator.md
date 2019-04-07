@@ -5,7 +5,7 @@ date: 2018-03-25 16:44:35
 description: "Java中&与&&、|与||运算符"
 categories:
 - Java
-permalink: logical-operator
+permalink: /java/logical-operator
 ---
 
 
