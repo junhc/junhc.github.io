@@ -223,6 +223,32 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 }  
 ```
 
+```vim
+List<Integer> ls = Lists.newArrayList(1, 1, 2, 2);
+for (Integer i : ls) {
+    if(i.equals(1)){
+        ls.remove(i);
+    }
+}
+System.out.println(JSON.toJSONString(ls));
+```
+
+for语法糖，反编译
+
+```vim
+List<Integer> ls = Lists.newArrayList(new Integer[]{1, 1, 2, 2});
+Iterator i$ = ls.iterator();
+while(i$.hasNext()) {
+    // 再次执行迭代器的next方法时，checkForComodification会报错
+    Integer i = (Integer)i$.next();
+    if (i.equals(1)) {
+        // 调用的ArrayList的remove方法，可以删掉，modCount++
+        ls.remove(i);
+    }
+}
+System.out.println(JSON.toJSONString(ls));
+```
+
 ###### 1.6. 使用CopyOnWriteArrayList解决fail-fast问题
 
 ##### 2. LinkedList  
