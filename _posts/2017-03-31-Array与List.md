@@ -77,6 +77,7 @@ public class ArrayList<E> extends AbstractList<E>
     private void grow(int minCapacity) {
         // overflow-conscious code
         int oldCapacity = elementData.length;
+        // 1.5倍
         int newCapacity = oldCapacity + (oldCapacity >> 1);
         if (newCapacity - minCapacity < 0)
             newCapacity = minCapacity;
@@ -373,7 +374,7 @@ public class LinkedList<E>
 }
 ```
 
-##### 小知识
+##### 多知道一点
 ```vim
 public final class System {
    /**
