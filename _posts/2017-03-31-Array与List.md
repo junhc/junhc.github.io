@@ -18,7 +18,7 @@ permalink: /java/array_and_list
   * [1.6. 使用CopyOnWriteArrayList解决fail-fast问题](#1-6-使用CopyOnWriteArrayList解决fail-fast问题)
 * [2. LinkedList](#2-linkedlist)
   * [2.1. LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低](#2-1-LinkedList基于链表的数据结构，地址是任意，所以在开辟内存空间的时候不需要等一个连续的地址，对于插入和删除操作效率会比较高，但查询操作时，要移动指针效率比较低)
-* [小知识](#小知识)
+* [多知道一点](#多知道一点)
 
 
 ##### 1. 关于ArrayList常见问题   
