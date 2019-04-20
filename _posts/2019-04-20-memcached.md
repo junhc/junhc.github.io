@@ -123,7 +123,7 @@ $ perl memcached-tool localhost:11211 display
   > memcached会优先使用已超时的记录的空间，但即使如此，也会发生追加新纪录时空间不足的情况，  
   > 此时就要删除“最近最少使用”的记录的机制。  
 
-##### **现在的`memcached`规格中，键长度最大为 250 字节**
+##### `memcached`的键长度最大为 250 字节
 
 ##### `memcached`的分布式算法
 
