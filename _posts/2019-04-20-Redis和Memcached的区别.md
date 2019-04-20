@@ -18,4 +18,4 @@ permalink: /redis_dff_memcached
 ##### 性能对比
 > 由于Redis只使用单核，而Memcached可以使用多核，所以平均每一个核上Redis在存储小数据时比Memcached性能更高。而在100k以上的数据中，Memcached性能要高于Redis，虽然Redis最近也在存储大数据的性能上进行优化，但是比起Memcached，还是稍有逊色。
 
-![](/assets/img/Redis和Memcached的区别.tiff)
+![](/assets/img/Redis和Memcached的区别.png)
