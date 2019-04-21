@@ -1,10 +1,3 @@
----
-name: hashmap
-title: Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析
-date: 2019-04-19 11:21:27
-tags: 
-categories: 
----
 今天发一篇"水文"，可能很多读者都会表示不理解，不过我想把它作为并发序列文章中不可缺少的一块来介绍。本来以为花不了多少时间的，不过最终还是投入了挺多时间来完成这篇文章的。
 
 网上关于 HashMap 和 ConcurrentHashMap 的文章确实不少，不过缺斤少两的文章比较多，所以才想自己也写一篇，把细节说清楚说透，尤其像 Java8 中的 ConcurrentHashMap，大部分文章都说不清楚。终归是希望能降低大家学习的成本，不希望大家到处找各种不是很靠谱的文章，看完一篇又一篇，可是还是模模糊糊。
@@ -12,8 +5,6 @@ categories:
 阅读建议：四节基本上可以进行独立阅读，建议初学者可按照 Java7 HashMap -> Java7 ConcurrentHashMap -> Java8 HashMap -> Java8 ConcurrentHashMap 顺序进行阅读，可适当降低阅读门槛。
 
 阅读前提：本文分析的是源码，所以至少读者要熟悉它们的接口使用，同时，对于并发，读者至少要知道 CAS、ReentrantLock、UNSAFE 操作这几个基本的知识，文中不会对这些知识进行介绍。Java8 用到了红黑树，不过本文不会进行展开，感兴趣的读者请自行查找相关资料。
-
-<!-- toc -->
 
 ## Java7 HashMap
 
@@ -169,7 +160,7 @@ public V get(Object key) {
     // 之前说过，key 为 null 的话，会被放到 table[0]，所以只要遍历下 table[0] 处的链表就可以了
     if (key == null)
         return getForNullKey();
-    // 
+    //
     Entry<K,V> entry = getEntry(key);
 
     return null == entry ? null : entry.getValue();
@@ -237,10 +228,10 @@ public ConcurrentHashMap(int initialCapacity,
     // 那么计算出 segmentShift 为 28，segmentMask 为 15，后面会用到这两个值
     this.segmentShift = 32 - sshift;
     this.segmentMask = ssize - 1;
-  
+
     if (initialCapacity > MAXIMUM_CAPACITY)
         initialCapacity = MAXIMUM_CAPACITY;
-  
+
     // initialCapacity 是设置整个 map 初始的大小，
     // 这里根据 initialCapacity 计算 Segment 数组中每个位置可以分到的大小
     // 如 initialCapacity 为 64，那么每个 Segment 或称之为"槽"可以分到 4 个
@@ -249,7 +240,7 @@ public ConcurrentHashMap(int initialCapacity,
         ++c;
     // 默认 MIN_SEGMENT_TABLE_CAPACITY 是 2，这个值也是有讲究的，因为这样的话，对于具体的槽上，
     // 插入一个元素不至于扩容，插入第二个的时候才会扩容
-    int cap = MIN_SEGMENT_TABLE_CAPACITY; 
+    int cap = MIN_SEGMENT_TABLE_CAPACITY;
     while (cap < c)
         cap <<= 1;
 
@@ -317,7 +308,7 @@ final V put(K key, int hash, V value, boolean onlyIfAbsent) {
         int index = (tab.length - 1) & hash;
         // first 是数组该位置处的链表的表头
         HashEntry<K,V> first = entryAt(tab, index);
-        
+
         // 下面这串 for 循环虽然很长，不过也很好理解，想想该位置没有任何元素和已经存在一个链表这两种情况
         for (HashEntry<K,V> e = first;;) {
             if (e != null) {
@@ -342,7 +333,7 @@ final V put(K key, int hash, V value, boolean onlyIfAbsent) {
                     node.setNext(first);
                 else
                     node = new HashEntry<K,V>(hash, key, value, first);
-                
+
                 int c = count + 1;
                 // 如果超过了该 segment 的阈值，这个 segment 需要扩容
                 if (c > threshold && tab.length < MAXIMUM_CAPACITY)
@@ -388,12 +379,12 @@ private Segment<K,V> ensureSegment(int k) {
         int cap = proto.table.length;
         float lf = proto.loadFactor;
         int threshold = (int)(cap * lf);
-        
+
         // 初始化 segment[k] 内部的数组
         HashEntry<K,V>[] tab = (HashEntry<K,V>[])new HashEntry[cap];
         if ((seg = (Segment<K,V>)UNSAFE.getObjectVolatile(ss, u))
             == null) { // 再次检查一遍该槽是否被其他线程初始化了。
-          
+
             Segment<K,V> s = new Segment<K,V>(lf, threshold, tab);
             // 使用 while 循环，内部用 CAS，当前线程成功设值或其他线程成功设值后，退出
             while ((seg = (Segment<K,V>)UNSAFE.getObjectVolatile(ss, u))
@@ -425,7 +416,7 @@ private HashEntry<K,V> scanAndLockForPut(K key, int hash, V value) {
     HashEntry<K,V> e = first;
     HashEntry<K,V> node = null;
     int retries = -1; // negative while locating node
-    
+
     // 循环获取锁
     while (!tryLock()) {
         HashEntry<K,V> f; // to recheck first below
@@ -486,7 +477,7 @@ private void rehash(HashEntry<K,V> node) {
         (HashEntry<K,V>[]) new HashEntry[newCapacity];
     // 新的掩码，如从 16 扩容到 32，那么 sizeMask 为 31，对应二进制 ‘000...00011111’
     int sizeMask = newCapacity - 1;
-    
+
     // 遍历原数组，老套路，将原数组位置 i 处的链表拆分到 新数组位置 i 和 i+oldCap 两个位置
     for (int i = 0; i < oldCapacity ; i++) {
         // e 是链表的第一个元素
@@ -634,7 +625,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
     // 找到具体的数组下标，如果此位置没有值，那么直接初始化一下 Node 并放置在这个位置就可以了
     if ((p = tab[i = (n - 1) & hash]) == null)
         tab[i] = newNode(hash, key, value, null);
-  
+
     else {// 数组该位置有数据
         Node<K,V> e; K k;
         // 首先，判断该位置的第一个数据和我们要插入的数据，key 是不是"相等"，如果是，取出这个节点
@@ -712,7 +703,7 @@ final Node<K,V>[] resize() {
         newCap = DEFAULT_INITIAL_CAPACITY;
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
-    
+
     if (newThr == 0) {
         float ft = (float)newCap * loadFactor;
         newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
@@ -723,7 +714,7 @@ final Node<K,V>[] resize() {
     // 用新的数组大小初始化新的数组
     Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
     table = newTab; // 如果是初始化数组，到这里就结束了，返回 newTab 即可
-    
+
     if (oldTab != null) {
         // 开始遍历原数组，进行数据迁移。
         for (int j = 0; j < oldCap; ++j) {
@@ -736,7 +727,7 @@ final Node<K,V>[] resize() {
                 // 如果是红黑树，具体我们就不展开了
                 else if (e instanceof TreeNode)
                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
-                else { 
+                else {
                     // 这块是处理链表的情况，
                     // 需要将此链表拆成两个链表，放到新的数组中，并且保留原来的先后顺序
                     // loHead、loTail 对应一条链表，hiHead、hiTail 对应另一条链表，代码还是比较简单的
@@ -807,7 +798,7 @@ final Node<K,V> getNode(int hash, Object key) {
             // 判断是否是红黑树
             if (first instanceof TreeNode)
                 return ((TreeNode<K,V>)first).getTreeNode(hash, key);
-            
+
             // 链表遍历
             do {
                 if (e.hash == hash &&
@@ -880,7 +871,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
         if (tab == null || (n = tab.length) == 0)
             // 初始化数组，后面会详细介绍
             tab = initTable();
-        
+
         // 找该 hash 值对应的数组下标，得到第一个节点 f
         else if ((f = tabAt(tab, i = (n - 1) & hash)) == null) {
             // 如果数组该位置为空，
@@ -894,9 +885,9 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
         else if ((fh = f.hash) == MOVED)
             // 帮助数据迁移，这个等到看完数据迁移部分的介绍后，再理解这个就很简单了
             tab = helpTransfer(tab, f);
-        
+
         else { // 到这里就是说，f 是该位置的头结点，而且不为空
-            
+
             V oldVal = null;
             // 获取数组该位置的头结点的监视器锁
             synchronized (f) {
@@ -952,7 +943,7 @@ final V putVal(K key, V value, boolean onlyIfAbsent) {
             }
         }
     }
-    // 
+    //
     addCount(1L, binCount);
     return null;
 }
@@ -1015,7 +1006,7 @@ private final void treeifyBin(Node<K,V>[] tab, int index) {
         else if ((b = tabAt(tab, index)) != null && b.hash >= 0) {
             // 加锁
             synchronized (b) {
-            
+
                 if (tabAt(tab, index) == b) {
                     // 下面就是遍历链表，建立一颗红黑树
                     TreeNode<K,V> hd = null, tl = null;
@@ -1055,7 +1046,7 @@ private final void tryPresize(int size) {
     int sc;
     while ((sc = sizeCtl) >= 0) {
         Node<K,V>[] tab = table; int n;
-        
+
         // 这个 if 分支和之前说的初始化数组的代码基本上是一样的，在这里，我们可以不用管这块代码
         if (tab == null || (n = tab.length) == 0) {
             n = (sc > c) ? sc : c;
@@ -1077,7 +1068,7 @@ private final void tryPresize(int size) {
         else if (tab == table) {
             // 我没看懂 rs 的真正含义是什么，不过也关系不大
             int rs = resizeStamp(n);
-            
+
             if (sc < 0) {
                 Node<K,V>[] nt;
                 if ((sc >>> RESIZE_STAMP_SHIFT) != rs || sc == rs + 1 ||
@@ -1119,7 +1110,7 @@ private final void tryPresize(int size) {
 ```java
 private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
     int n = tab.length, stride;
-    
+
     // stride 在单核下直接等于 n，多核模式下为 (n>>>3)/NCPU，最小值是 16
     // stride 可以理解为”步长“，有 n 个位置是需要进行迁移的，
     //   将这 n 个任务分为多个任务包，每个任务包有 stride 个任务
@@ -1143,30 +1134,30 @@ private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         // transferIndex 也是 ConcurrentHashMap 的属性，用于控制迁移的位置
         transferIndex = n;
     }
-    
+
     int nextn = nextTab.length;
-    
+
     // ForwardingNode 翻译过来就是正在被迁移的 Node
     // 这个构造方法会生成一个Node，key、value 和 next 都为 null，关键是 hash 为 MOVED
     // 后面我们会看到，原数组中位置 i 处的节点完成迁移工作后，
     //    就会将位置 i 处设置为这个 ForwardingNode，用来告诉其他线程该位置已经处理过了
     //    所以它其实相当于是一个标志。
     ForwardingNode<K,V> fwd = new ForwardingNode<K,V>(nextTab);
-    
+
 
     // advance 指的是做完了一个位置的迁移工作，可以准备做下一个位置的了
     boolean advance = true;
     boolean finishing = false; // to ensure sweep before committing nextTab
-    
+
     /*
      * 下面这个 for 循环，最难理解的在前面，而要看懂它们，应该先看懂后面的，然后再倒回来看
-     * 
+     *
      */
-    
+
     // i 是位置索引，bound 是边界，注意是从后往前
     for (int i = 0, bound = 0;;) {
         Node<K,V> f; int fh;
-        
+
         // 下面这个 while 真的是不好理解
         // advance 为 true 表示可以进行下一个位置的迁移了
         //   简单理解结局：i 指向了 transferIndex，bound 指向了 transferIndex-stride
@@ -1174,7 +1165,7 @@ private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
             int nextIndex, nextBound;
             if (--i >= bound || finishing)
                 advance = false;
-            
+
             // 将 transferIndex 值赋给 nextIndex
             // 这里 transferIndex 一旦小于等于 0，说明原数组的所有位置都有相应的线程去处理了
             else if ((nextIndex = transferIndex) <= 0) {
@@ -1202,7 +1193,7 @@ private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
                 sizeCtl = (n << 1) - (n >>> 1);
                 return;
             }
-            
+
             // 之前我们说过，sizeCtl 在迁移前会设置为 (rs << RESIZE_STAMP_SHIFT) + 2
             // 然后，每有一个线程参与迁移就会将 sizeCtl 加 1，
             // 这里使用 CAS 操作对 sizeCtl 进行减 1，代表做完了属于自己的任务
@@ -1210,7 +1201,7 @@ private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
                 // 任务结束，方法退出
                 if ((sc - 2) != resizeStamp(n) << RESIZE_STAMP_SHIFT)
                     return;
-                
+
                 // 到这里，说明 (sc - 2) == resizeStamp(n) << RESIZE_STAMP_SHIFT，
                 // 也就是说，所有的迁移任务都做完了，也就会进入到上面的 if(finishing){} 分支了
                 finishing = advance = true;
@@ -1300,7 +1291,7 @@ private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
                             (hc != 0) ? new TreeBin<K,V>(lo) : t;
                         hn = (hc <= UNTREEIFY_THRESHOLD) ? untreeify(hi) :
                             (lc != 0) ? new TreeBin<K,V>(hi) : t;
-                        
+
                         // 将 ln 放置在新数组的位置 i
                         setTabAt(nextTab, i, ln);
                         // 将 hn 放置在新数组的位置 i+n
@@ -1349,7 +1340,7 @@ public V get(Object key) {
         else if (eh < 0)
             // 参考 ForwardingNode.find(int h, Object k) 和 TreeBin.find(int h, Object k)
             return (p = e.find(h, key)) != null ? p.val : null;
-        
+
         // 遍历链表
         while ((e = e.next) != null) {
             if (e.hash == h &&
@@ -1362,15 +1353,3 @@ public V get(Object key) {
 ```
 
 简单说一句，此方法的大部分内容都很简单，只有正好碰到扩容的情况，ForwardingNode.find(int h, Object k) 稍微复杂一些，不过在了解了数据迁移的过程后，这个也就不难了，所以限于篇幅这里也不展开说了。
-
-## 总结
-
-其实也不是很难嘛，虽然没有像之前的 AQS 和线程池一样一行一行源码进行分析，但还是把所有初学者可能会糊涂的地方都进行了深入的介绍，只要是稍微有点基础的读者，应该是很容易就能看懂 HashMap 和 ConcurrentHashMap 源码了。
-
-看源码不算是目的吧，深入地了解 Doug Lea 的设计思路，我觉得还挺有趣的，大师就是大师，代码写得真的是好啊。
-
-我发现很多人都以为我写博客主要是源码分析，说真的，我对于源码分析没有那么大热情，主要都是为了用源码说事罢了，可能之后的文章还是会有比较多的源码分析成分，大家该怎么看就怎么看吧。
-
-不要脸地自以为本文的质量还是挺高的，信息量比较大，如果你觉得有写得不好的地方，或者说看完本文你还是没看懂它们，那么请提出来~~~
-
-（全文完）
