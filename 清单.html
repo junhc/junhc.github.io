@@ -24,6 +24,15 @@ permalink: todo
         border-top:none!important;
         background-color:inherit!important;
       }
+			#calendar a {
+        color:#000!important;
+      }
+			#calendar a:hover {
+        border-bottom-color: inherit!important;
+      }
+			#calendar .fail{
+			  text-decoration: line-through;
+			}
       </style>
       <script src='/assets/js/fullcalendar/moment.min.js'></script>
       <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
@@ -43,18 +52,27 @@ permalink: todo
 						navLinks: true, // can click day/week names to navigate views
 						editable: false,
 						eventLimit: true, // allow "more" link when too many events
+						eventRender: function(event, element) {
+							 if(event.description) {
+								 $(element).find("td.fc-list-item-title a").attr('title', event.description);
+							 }
+						},
 						events: [
 							{
 								title: '阅读 Spring MVC 源码分析文章',
+								description: '超时将近两个小时，http://svip.iocoder.cn/Spring-MVC/HandlerMapping-3-AbstractHandlerMethodMapping/',
 								start: '2019-04-21 13:30',
-								end: '2019-04-21 15:30',
-								color: '#9c9c9c'
+								// end: '2019-04-21 15:30',
+								end: '2019-04-21 17:20',
+								color: '#690'
 							},
 							{
 								title: '阅读 Spring 源码分析文章',
 								start: '2019-04-21 15:45',
 								end: '2019-04-21 17:45',
-								color: '#9c9c9c'
+								color: '#9c9c9c',
+								className: 'fail',
+								description: '一直都在看 Spring MVC 源码分析的文章'
 							},
 							{
 								title: '跑步、听书',
