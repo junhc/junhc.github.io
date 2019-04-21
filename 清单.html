@@ -1,0 +1,103 @@
+---
+layout: default
+title: "TODO"
+permalink: todo
+---
+<div class="page-content wc-container">
+
+	<div class="post">
+		<h1>TODO</h1>
+		<p class="post-meta">
+      <span class="categories">
+      清单
+      </span> |
+	    <span class="post-date">
+    	{{ '2019-02-18' | date: "%b %-d, %Y" }}
+	    </span>
+		</p>
+		<div class="post">
+      <link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+      <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+			<!-- <link href='/assets/css/bootstrap.min.css' rel='stylesheet' /> -->
+      <style>
+      table tr {
+        border-top:none!important;
+        background-color:inherit!important;
+      }
+      #calendar a {
+        color:#fff!important;
+      }
+      #calendar a:hover {
+        border-bottom-color: inherit!important;
+      }
+			#calendar a.fc-more {
+        color:#000!important;
+      }
+			#calendar a.fc-more:hover {
+				text-decoration: none!important;
+			}
+      </style>
+      <script src='/assets/js/fullcalendar/moment.min.js'></script>
+      <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
+      <script src='/assets/js/fullcalendar/zh-cn.js'></script>
+			<!-- <script src='/assets/js/popper.min.js'></script> -->
+			<!-- <script src='/assets/js/bootstrap.min.js'></script> -->
+      <script>
+				$(function() {
+					$('#calendar').fullCalendar({
+						header: {
+							left: 'prev,next today',
+							center: 'title',
+							right: 'listDay'
+						},
+						locale: 'zh-cn',
+						defaultView: 'listDay',
+						navLinks: true, // can click day/week names to navigate views
+						editable: false,
+						eventLimit: true, // allow "more" link when too many events
+						events: [
+							{
+								title: '阅读 Spring MVC 源码分析文章',
+								start: '2019-04-21 13:30',
+								end: '2019-04-21 15:30',
+								color: '#9c9c9c'
+							},
+							{
+								title: '阅读 Spring 源码分析文章',
+								start: '2019-04-21 15:45',
+								end: '2019-04-21 17:45',
+								color: '#9c9c9c'
+							},
+							{
+								title: '跑步、听书',
+								start: '2019-04-21 20:00',
+								end: '2019-04-21 21:00',
+								color: '#9c9c9c'
+							},
+							{
+								title: '写简历',
+								start: '2019-04-21 21:30',
+								end: '2019-04-21 22:30',
+								color: '#9c9c9c'
+							},
+							{
+								title: '刷5道，剑指Offer',
+								start: '2019-04-21 22:30',
+								end: '2019-04-21 23:30',
+								color: '#9c9c9c'
+							},
+							{
+								title: '阅读 Dubbo 源码分析文章',
+								start: '2019-04-21 23:45',
+								end: '2019-04-22 01:30',
+								color: '#9c9c9c'
+							}
+						]
+					});
+				});
+      </script>
+      <div id='calendar' style="width:800px;"></div>
+		</div>
+	</div>
+
+</div>
