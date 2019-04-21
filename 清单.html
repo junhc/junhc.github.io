@@ -26,11 +26,12 @@ permalink: todo
       }
 			#calendar a {
         color:#000!important;
+				cursor: default;
       }
 			#calendar a:hover {
-        border-bottom-color: inherit!important;
+        border-bottom: none!important;
       }
-			#calendar .fail{
+			#calendar .undone{
 			  text-decoration: line-through;
 			}
       </style>
@@ -71,7 +72,7 @@ permalink: todo
 								start: '2019-04-21 15:45',
 								end: '2019-04-21 17:45',
 								color: '#9c9c9c',
-								className: 'fail',
+								className: 'undone',
 								description: '一直都在看 Spring MVC 源码分析的文章'
 							},
 							{
