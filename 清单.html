@@ -31,7 +31,7 @@ permalink: todo
 			#calendar a:hover {
         border-bottom: none!important;
       }
-			#calendar .undone{
+			#calendar .undone {
 			  text-decoration: line-through;
 			}
       </style>
@@ -54,6 +54,16 @@ permalink: todo
 						editable: false,
 						eventLimit: true, // allow "more" link when too many events
 						eventRender: function(event, element) {
+							 var done = $(element).hasClass('done'), undone=$(element).hasClass('undone');
+							 $(element).find("td.fc-list-item-marker span.fc-event-dot").attr('style', 'background-color:' + (done ? '#690' : '#9c9c9c'));
+							 if(done) {
+								 $(element).find("td.fc-list-item-time").attr('style', 'color:#690!important');
+								 $(element).find("td.fc-list-item-title a").attr('style', 'color:#690!important');
+							 }
+							 if(undone) {
+								 $(element).find("td.fc-list-item-time").attr('style', 'color:#c30!important');
+								 $(element).find("td.fc-list-item-title a").attr('style', 'color:#c30!important');
+							 }
 							 if(event.description) {
 								 $(element).find("td.fc-list-item-title a").attr('title', event.description);
 							 }
@@ -65,13 +75,12 @@ permalink: todo
 								start: '2019-04-21 13:30',
 								// end: '2019-04-21 15:30',
 								end: '2019-04-21 17:20',
-								color: '#690'
+								className: 'done'
 							},
 							{
 								title: '阅读 Spring 源码分析文章',
 								start: '2019-04-21 15:45',
 								end: '2019-04-21 17:45',
-								color: '#9c9c9c',
 								className: 'undone',
 								description: '一直都在看 Spring MVC 源码分析的文章'
 							},
@@ -79,25 +88,27 @@ permalink: todo
 								title: '跑步、听书',
 								start: '2019-04-21 20:00',
 								end: '2019-04-21 21:00',
-								color: '#9c9c9c'
+								className: 'undone',
+								description: '30分钟腹肌训练'
 							},
 							{
 								title: '写简历',
 								start: '2019-04-21 21:30',
 								end: '2019-04-21 22:30',
-								color: '#9c9c9c'
+								className: 'done'
 							},
 							{
-								title: '刷5道，剑指Offer',
+								title: '刷2道，剑指Offer',
 								start: '2019-04-21 22:30',
 								end: '2019-04-21 23:30',
-								color: '#9c9c9c'
+								className: 'done'
 							},
 							{
 								title: '阅读 Dubbo 源码分析文章',
 								start: '2019-04-21 23:45',
 								end: '2019-04-22 01:30',
-								color: '#9c9c9c'
+								color: '#9c9c9c',
+								className: 'undone'
 							}
 						]
 					});
