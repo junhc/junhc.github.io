@@ -54,7 +54,7 @@ permalink: todo
 						editable: false,
 						eventLimit: true, // allow "more" link when too many events
 						eventRender: function(event, element) {
-							 var done = $(element).hasClass('done'), undone=$(element).hasClass('undone');
+							 var done = $(element).hasClass('done'), undone = $(element).hasClass('undone');
 							 $(element).find("td.fc-list-item-marker span.fc-event-dot").attr('style', 'background-color:' + (done ? '#690' : '#9c9c9c'));
 							 if(done) {
 								 $(element).find("td.fc-list-item-time").attr('style', 'color:#690!important');
@@ -71,18 +71,17 @@ permalink: todo
 						events: [
 							{
 								title: '阅读 Spring MVC 源码分析文章',
-								description: '超时将近两个小时，http://svip.iocoder.cn/Spring-MVC/HandlerMapping-3-AbstractHandlerMethodMapping/',
 								start: '2019-04-21 13:30',
 								// end: '2019-04-21 15:30',
 								end: '2019-04-21 17:20',
-								className: 'done'
+								className: 'done',
+								description: '超时将近两个小时，http://svip.iocoder.cn/Spring-MVC/HandlerMapping-3-AbstractHandlerMethodMapping/'
 							},
 							{
 								title: '阅读 Spring 源码分析文章',
 								start: '2019-04-21 15:45',
 								end: '2019-04-21 17:45',
-								className: 'undone',
-								description: '一直都在看 Spring MVC 源码分析的文章'
+								className: 'undone'
 							},
 							{
 								title: '跑步、听书',
@@ -107,8 +106,37 @@ permalink: todo
 								title: '阅读 Dubbo 源码分析文章',
 								start: '2019-04-21 23:45',
 								end: '2019-04-22 01:30',
-								color: '#9c9c9c',
 								className: 'undone'
+							},
+							{
+								title: '阅读 MySQL技术内幕InnoDB存储引擎',
+								start: '2019-04-22 07:00',
+								end: '2019-04-22 08:30',
+							},
+							{
+								title: '看技术文章，系统设计方面',
+								start: '2019-04-22 09:00',
+								end: '2019-04-22 09:30',
+							},
+							{
+								title: '刷3道，剑指Offer',
+								start: '2019-04-22 12:00',
+								end: '2019-04-22 13:00'
+							},
+							{
+								title: '运动、听书',
+								start: '2019-04-21 21:00',
+								end: '2019-04-21 22:00'
+							},
+							{
+								title: '阅读 Spring MVC 源码分析文章',
+								start: '2019-04-22 22:30',
+								end: '2019-04-22 23:30'
+							},
+							{
+								title: '阅读 Spring 源码分析文章',
+								start: '2019-04-22 23:45',
+								end: '2019-04-22 00:45'
 							}
 						]
 					});
