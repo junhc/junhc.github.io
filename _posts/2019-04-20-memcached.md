@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "memcached"
+title: "Memcached"
 date: 2019-04-20 13:08:17
-description: "memcached"
+description: "Memcached"
 categories:
 - memcached
 permalink: memcached
 ---
 
-##### `memcached`的特征
+##### `Memcached`的特征
 
 - 协议简单
 - 基于`libevent`的事件处理
@@ -23,7 +23,7 @@ permalink: memcached
   > 服务器端没有分布式的功能，各个memcached不会互相共享信息。  
   > 怎样进行分布式完全取决于客户端的实现。
 
-##### `memcached`的安装
+##### `Memcached`的安装
 
 ```vim
 #
@@ -44,7 +44,7 @@ cd memcached-1.x.x
 /usr/local/bin/memcached -p 11211 -m 64m -d
 ```  
 
-##### `memcached`的内存存储
+##### `Memcached`的内存存储
 
 - Slab Allocation机制：整理内存以便重复使用
   > 按照预先规定的大小，将分配的内存分割成特定长度的块，并把尺寸相同的块分成组（chunk的结合），
@@ -113,7 +113,7 @@ $ perl memcached-tool localhost:11211 display
 
 ```
 
-##### `memcached`在数据删除方面有效利用资源
+##### `Memcached`在数据删除方面有效利用资源
 
 - Lazy Expiration
   > memcached内部不会监视记录是否过期，而是在get时查看记录的时间戳，检查记录是否过期。  
@@ -123,9 +123,9 @@ $ perl memcached-tool localhost:11211 display
   > memcached会优先使用已超时的记录的空间，但即使如此，也会发生追加新纪录时空间不足的情况，  
   > 此时就要删除“最近最少使用”的记录的机制。  
 
-##### `memcached`的键长度最大为 250 字节
+##### `Memcached`的键长度最大为 250 字节
 
-##### `memcached`的分布式算法
+##### `Memcached`的分布式算法
 
 - 根据余数计算分散
   > 根据服务器台数的余数进行分散，求得键的整数哈希值，再除以服务器台数，根据余数来选择服务器
