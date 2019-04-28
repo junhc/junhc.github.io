@@ -6,7 +6,7 @@ description: "Redis和Memcached的区别"
 categories:
 - redis
 - memcached
-permalink: /redis_dff_memcached
+permalink: /redis-vs-memcached
 ---
 
 ##### Redis支持服务器端的数据操作
