@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "基于Spring可扩展Schema提供自定义配置支持"
-date: 2019-05-09 16:47:54
+date: 2018-10-09 16:47:54
 description: "基于Spring可扩展Schema提供自定义配置支持"
 categories:
 - spring
