@@ -10,7 +10,7 @@ permalink: /locksupport_and_condition
 
 
 ##### LockSupport工具
-
+  
 |方法名称|描述|
 |:--:|:--|
 |void park()|阻塞当前线程，如果调用uppark方法或者当前线程被中断，才能从park方法返回|
