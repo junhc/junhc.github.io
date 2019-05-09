@@ -54,9 +54,9 @@ public class OccPropertyPlaceholderConfigurer {
 
 **关于`xsd:schema`的各个属性具体含义就不作过多解释，可以参见[Schema 教程](http://www.w3school.com.cn/schema/schema_schema.asp)**  
 
-**<xsd:element name="configure">对应着配置项节点的名称，因此在应用中会用`configure`作为节点名来引用这个配置**
+**`<xsd:element name="configure">`对应着配置项节点的名称，因此在应用中会用`configure`作为节点名来引用这个配置**
 
-**<xsd:attribute name="pool" type="xsd:string" />和<xsd:attribute name="type" type="xsd:integer" />对应着配置项`configure`的两个属性名，因此在应用中可以配置pool和type两个属性，分别是String和Integer类型**  
+**`<xsd:attribute name="pool" type="xsd:string" />`和`<xsd:attribute name="type" type="xsd:integer" />`对应着配置项`configure`的两个属性名，因此在应用中可以配置pool和type两个属性，分别是String和Integer类型**  
 
 **完成后需把xsd存放在classpath下，一般都放在`META-INF`目录下**
 
