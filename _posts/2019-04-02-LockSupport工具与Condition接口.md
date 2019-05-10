@@ -10,7 +10,7 @@ permalink: /locksupport_and_condition
 
 
 ##### LockSupport工具
-  
+
 |方法名称|描述|
 |:--:|:--|
 |void park()|阻塞当前线程，如果调用uppark方法或者当前线程被中断，才能从park方法返回|
@@ -33,3 +33,15 @@ permalink: /locksupport_and_condition
 |当前线程释放锁并进入等待状态到将来的某个时间|不支持|支持|
 |唤醒等待队列中的一个线程|支持|支持|
 |唤醒等待队列中的全部线程|支持|支持|
+
+```vim
+public class ConditionObject implements Condition, java.io.Serializable {
+       private static final long serialVersionUID = 1173984872572414699L;
+       /** First node of condition queue. */
+       private transient Node firstWaiter;
+       /** Last node of condition queue. */
+       private transient Node lastWaiter;
+
+       ...
+}       
+```

@@ -17,6 +17,72 @@ permalink: blocking-queue
 ##### ArrayBlockingQueue
 > `ArrayBlockingQueue`是一个用数组实现的有界阻塞队列。此队列按照先进先出(`FIFO`)的原则对元素进行排序。
 
+```vim
+/** Main lock guarding all access */
+final ReentrantLock lock;
+/** Condition for waiting takes */
+private final Condition notEmpty;
+/** Condition for waiting puts */
+private final Condition notFull;
+
+...
+
+public ArrayBlockingQueue(int capacity, boolean fair) {
+    if (capacity <= 0)
+        throw new IllegalArgumentException();
+    this.items = new Object[capacity];
+    lock = new ReentrantLock(fair);
+    notEmpty = lock.newCondition();
+    notFull =  lock.newCondition();
+}
+
+...
+
+public void put(E e) throws InterruptedException {
+    checkNotNull(e);
+    final ReentrantLock lock = this.lock;
+    lock.lockInterruptibly();
+    try {
+        while (count == items.length)
+            notFull.await(); // 如果队列已满，则等待
+        insert(e);
+    } finally {
+        lock.unlock();
+    }
+}
+
+private void insert(E x) {
+    items[putIndex] = x;
+    putIndex = inc(putIndex);
+    ++count;
+    notEmpty.signal(); // 有新的元素被插入，通知等待中的取走元素线程
+}
+
+public E take() throws InterruptedException {
+    final ReentrantLock lock = this.lock;
+    lock.lockInterruptibly();
+    try {
+        while (count == 0)
+            notEmpty.await(); // 如果队列为空，则等待
+        return extract();
+    } finally {
+        lock.unlock();
+    }
+}
+
+private E extract() {
+    final Object[] items = this.items;
+    E x = this.<E>cast(items[takeIndex]);
+    items[takeIndex] = null;
+    takeIndex = inc(takeIndex);
+    --count;
+    notFull.signal(); // 有新的元素被取走，通知等待中的插入元素线程
+    return x;
+}
+
+...
+```
+
 ##### LinkedBlockingQueue
 > `LinkedBlockingQueue`是一个用链表实现的有界阻塞队列。此队列的默认和最大长度为`Integer.MAX_VALUE`。  
 此队列按照先进先出(`FIFO`)的原则对元素进行排序。
