@@ -4,7 +4,7 @@ title: "虚拟机类加载机制"
 date: 2018-04-21 14:32:48
 description: "虚拟机类加载机制"
 categories:
-- jvm
+- JVM
 permalink: classloader
 ---
 
@@ -151,7 +151,7 @@ public class ClassLoaderTest {
 //null
 //sun.misc.Launcher$AppClassLoader->sun.misc.Launcher$ExtClassLoader->null
 ```
-  
+
 ##### 双亲委派模型
 > ▣ 启动类加载器 (Bootstarp ClassLoader): 这个类将负责存放在 `<JAVA_HOME>\lib` 目录中的，或者被 `-Xbootclasspath` 参数所指定的路径中，并且虚拟机识别的类库加载到虚拟机内存中。启动类加载器无法被Java程序直接饮用，用户在编写自定义类加载器时，如果需要吧加载请求委派给引导类加载器，那么直接使用null代替即可。
 

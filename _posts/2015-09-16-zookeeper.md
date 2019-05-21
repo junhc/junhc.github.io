@@ -4,7 +4,7 @@ title: "ZooKeeper"
 date: 2015-09-16 18:56:17
 description: "ZooKeeper"
 categories:
-- zookeeper
+- Zookeeper
 permalink: zookeeper
 ---
 

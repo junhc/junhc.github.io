@@ -4,7 +4,7 @@ title: "Memcached"
 date: 2019-04-20 13:08:17
 description: "Memcached"
 categories:
-- memcached
+- Memcached
 permalink: memcached
 ---
 

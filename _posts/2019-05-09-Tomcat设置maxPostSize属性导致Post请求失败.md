@@ -4,7 +4,7 @@ title: "Tomcat设置maxPostSize导致Post请求失败"
 date: 2019-05-09 16:47:54
 description: "Tomcat设置maxPostSize导致Post请求失败"
 categories:
-- tomcat
+- Tomcat
 permalink: Tomcat设置maxPostSize导致Post请求失败
 ---
 

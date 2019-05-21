@@ -4,8 +4,8 @@ title: "Redis和Memcached的区别"
 date: 2019-04-20 13:08:17
 description: "Redis和Memcached的区别"
 categories:
-- redis
-- memcached
+- Redis
+- Memcached
 permalink: /redis-vs-memcached
 ---
 

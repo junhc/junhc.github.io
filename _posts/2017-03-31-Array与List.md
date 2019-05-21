@@ -4,7 +4,7 @@ title: "Array与List"
 date: 2017-03-31 00:00:00
 description: "Array与List"
 categories:
-- java
+- Java
 permalink: /java/array_and_list
 ---
 

@@ -4,7 +4,7 @@ title: "虚拟机类加载机制"
 date: 2019-04-04 14:32:48
 description: "虚拟机类加载机制"
 categories:
-- jvm
+- JVM
 permalink: classloader-topic
 ---
 

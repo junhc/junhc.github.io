@@ -4,7 +4,8 @@ title: "LockSupport工具与Condition接口"
 date: 2019-04-02 00:00:00
 description: "LockSupport工具与Condition接口"
 categories:
-- java
+- Java
+- 并发编程
 permalink: /locksupport_and_condition
 ---
 

@@ -4,7 +4,7 @@ title: "String与StringBuilder与StringBuffer"
 date: 2017-03-31 00:00:00
 description: "String与StringBuilder与StringBuffer"
 categories:
-- java
+- Java
 permalink: /java/string_stringbuilder_stringbuffer
 ---
 

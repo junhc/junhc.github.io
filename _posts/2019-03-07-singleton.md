@@ -4,7 +4,7 @@ title: "设计模式之单例模式"
 date: 2019-03-07 01:02:45
 description: "设计模式之单例模式"
 categories:
-- java
+- Java
 - 设计模式
 permalink: singleton
 ---
