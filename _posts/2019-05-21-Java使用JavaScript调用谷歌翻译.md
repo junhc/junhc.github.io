@@ -9,6 +9,8 @@ categories:
 permalink: Java使用JavaScript调用谷歌翻译
 ---
 
+##### Java使用JavaScript调用谷歌翻译
+
 ```vim
 private static final String tkk =
         "function vq(a,uq) {"
@@ -92,6 +94,8 @@ private static String translate(String q) {
     return WebHttp.doGet(url);
 }
 ```
+
+##### WebHttp工具类
 
 ```vim
 public class WebHttp {
