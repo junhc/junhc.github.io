@@ -92,3 +92,103 @@ private static String translate(String q) {
     return WebHttp.doGet(url);
 }
 ```
+
+```vim
+public class WebHttp {
+
+    private static final String defaultCharset = "UTF-8";
+
+    /**
+     * GET方式请求
+     */
+    public static String doGet(String url, Map<String, ?> search) {
+        if (search != null) {
+            boolean isFirst = true;
+            StringBuilder s = new StringBuilder();
+            for (String key : search.keySet()) {
+                if (isFirst) {
+                    isFirst = false;
+                    s.append("?");
+                } else {
+                    s.append("&");
+                }
+                s.append(key).append("=").append(search.get(key));
+            }
+
+            url += s.toString();
+        }
+        return doGet(url);
+    }
+
+    public static String doGet(String url) {
+        try {
+            HttpClient client = new HttpClient();
+            GetMethod method = new GetMethod(url);
+            // 设置编码格式
+            method.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            method.setRequestHeader("Accept-Encoding", "gzip, deflate, br");
+            method.setRequestHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
+            if (client.executeMethod(method) == HttpStatus.SC_OK) {
+                return IOUtils.toString(new GZIPInputStream(method.getResponseBodyAsStream()), defaultCharset);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
+    /**
+     * POST方式请求
+     */
+    public static String doPost(String url, Object requestEntity) {
+        try {
+            HttpClient client = new HttpClient();
+            PostMethod method = new PostMethod(url);
+            // 设置编码格式
+            method.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            method.setRequestEntity(new StringRequestEntity(JSON.toJSONString(requestEntity), "application/json", "UTF-8"));
+            if (client.executeMethod(method) == HttpStatus.SC_OK) {
+                return IOUtils.toString(method.getResponseBodyAsStream(), defaultCharset);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    /**
+     * 模拟表单提交
+     */
+    public static JSONObject doPost(String url, NameValuePair[] parametersBody, Cookie... cookies) {
+        JSONObject result = new JSONObject();
+        try {
+            HttpClient client = new HttpClient();
+            PostMethod method = new PostMethod(url);
+            // 重置
+            method.releaseConnection();
+            // 设置Cookie
+            if (cookies != null && cookies.length > 0) {
+                client.getState().addCookies(cookies);
+            }
+            // 设置编码格式
+            method.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            // 设置参数
+            method.setRequestBody(parametersBody);
+            //
+            String responseBodyString = null;
+            if (client.executeMethod(method) == HttpStatus.SC_OK) {
+                responseBodyString = IOUtils.toString(method.getResponseBodyAsStream(), defaultCharset);
+            }
+            result.put("cookies", client.getState().getCookies());
+            try {
+                result.put("responseBody", JSON.parseObject(responseBodyString));
+            } catch (Exception e) {
+                result.put("responseBody", responseBodyString);
+            }
+            return result;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+}    
+```
