@@ -5,7 +5,6 @@ date: 2019-05-21 17:19:19
 description: "Java使用JavaScript调用谷歌翻译"
 categories:
 - Java
-- JavaScript
 permalink: Java使用JavaScript调用谷歌翻译
 ---
 

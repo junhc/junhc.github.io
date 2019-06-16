@@ -4,7 +4,7 @@ title: "删除hosts配置中localhost引发的 Unable to import maven project: S
 date: 2015-08-21 16:40:12
 description: ""
 categories:
--
+- 其他
 permalink: error-hosts-no-localhost
 ---
 ##### 缘起
