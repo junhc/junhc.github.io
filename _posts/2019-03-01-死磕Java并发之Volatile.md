@@ -1,10 +1,9 @@
 ---
 layout: post
-title: "volatile关键字"
+title: "死磕Java并发之Volatile"
 date: 2019-03-01 10:41:08
-description: "volatile关键字"
+description: "死磕Java并发之Volatile"
 categories:
-- Java
 - 并发编程
 permalink: volatile
 ---

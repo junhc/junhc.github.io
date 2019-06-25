@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "Java中的并发工具"
+title: "死磕Java并发之CountDownLatch与CyclicBarrier、Semaphore"
 date: 2019-04-03 14:32:48
-description: "Java中的并发工具"
+description: "死磕Java并发之CountDownLatch与CyclicBarrier、Semaphore"
 categories:
-- Java
 - 并发编程
-permalink: juc
+permalink: 死磕Java并发之CountDownLatch与CyclicBarrier、Semaphore
 ---
 
 ##### 等待多线程完成的`CountDownLatch`

@@ -1,10 +1,9 @@
 ---
 layout: post
-title: "Synchronized的实现原理与应用"
+title: "死磕Java并发之Synchronized"
 date: 2019-03-01 10:41:08
-description: "Synchronized的实现原理与应用"
+description: "死磕Java并发之Synchronized"
 categories:
-- Java
 - 并发编程
 permalink: synchronized
 ---

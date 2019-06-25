@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "LockSupport工具与Condition接口"
+title: "死磕Java并发之LockSupport与Condition"
 date: 2019-04-02 00:00:00
-description: "LockSupport工具与Condition接口"
+description: "死磕Java并发之LockSupport与Condition"
 categories:
-- Java
 - 并发编程
-permalink: /locksupport_and_condition
+permalink: 死磕Java并发之LockSupport与Condition
 ---
 
 
