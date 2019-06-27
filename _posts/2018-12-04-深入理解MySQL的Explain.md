@@ -5,7 +5,6 @@ date: 2018-12-04 16:44:35
 description: "深入理解MySQL的Explain"
 categories:
 - MySQL
-- Explain
 permalink: /mysql/explain
 ---
 

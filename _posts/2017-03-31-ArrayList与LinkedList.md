@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Array与List"
+title: "ArrayList与LinkedList"
 date: 2017-03-31 00:00:00
-description: "Array与List"
+description: "ArrayList与LinkedList"
 categories:
 - Java
-permalink: /java/array_and_list
+permalink: ArrayList与LinkedList
 ---
 
 ##### 目录
@@ -386,5 +386,22 @@ public final class System {
    * @param      length   要复制的数组元素的数量.
    */
    public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length){}
+}
+
+...
+
+public static void main(String[] args) {
+    int index = 1;
+    int[] elementData = new int[]{1, 2, 3, 4, 5};
+    int size = elementData.length;
+    nums = Arrays.copyOf(elementData, size + 1);
+    System.out.println(JSON.toJSONString(elementData));
+    // [1,2,3,4,5,0]
+    System.arraycopy(elementData, index, elementData, index + 1, size - index);
+    System.out.println(JSON.toJSONString(elementData));
+    // [1,2,2,3,4,5]
+    elementData[index] = 6;
+    System.out.println(JSON.toJSONString(elementData));
+    // [1,6,2,3,4,5]
 }
 ```
