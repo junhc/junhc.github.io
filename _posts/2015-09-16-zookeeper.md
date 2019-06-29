@@ -48,5 +48,14 @@ set path data [version]
 delete path [version]
 ```
 
-##### 相关资料
+![](/assets/img/znode.png)
+
+* data: ZNode存储的数据信息
+* ACL: 记录ZNode的访问权限
+* Stat: 记录ZNode的元数据，如事务ID、版本号、时间戳、大小等
+* child: 当前ZNode的子节点
+
+> `每个节点的数据最大不能超过1MB`
+
+##### 参考资料
 * [ZkClient源码](https://github.com/sgroschupf/zkclient)

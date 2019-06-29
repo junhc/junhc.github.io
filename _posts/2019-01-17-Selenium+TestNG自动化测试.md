@@ -2,7 +2,7 @@
 layout: post
 title: "Selenium+TestNG自动化测试"
 date: 2019-01-17 15:29:37
-description: "Selenium自动化测试"
+description: "Selenium+TestNG自动化测试"
 categories:
 - Selenium
 permalink: selenium
