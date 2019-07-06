@@ -238,18 +238,24 @@ mysql> explain select * from film_actor where film_id = 2;
 
 ```vim
 key_len计算规则如下：
-    字符串：
-      char(n)：n字节长度
-      varchar(n)：2字节存储字符串长度，如果是utf-8，则长度 3n + 2
-    数值类型：
-      tinyint：1字节
-      smallint：2字节
-      int：4字节
-      bigint：8字节　　
-    时间类型：
-      date：3字节
-      timestamp：4字节
-      datetime：8字节
+字符串：
+  char(n)：参考栗子①
+  varchar(n)：参考栗子②
+数值类型：
+  tinyint：1字节
+  smallint：2字节
+  int：4字节
+  bigint：8字节　　
+时间类型：
+  date：3字节
+  timestamp：4字节
+  datetime：8字节
+
+举个栗子
+  ① char(10)固定字段且允许NULL：10*(Character Set：utf8=3,gbk=2,latin1=1)+1(NULL)
+    char(10)固定字段且不允许NULL：10*(Character Set：utf8=3,gbk=2,latin1=1)
+  ② varchr(10)变长字段且允许NULL：10*(Character Set：utf8=3,gbk=2,latin1=1)+1(NULL)+2(变长字段)
+    varchr(10)变长字段且不允许NULL：10*(Character Set：utf8=3,gbk=2,latin1=1)+2(变长字段)
 ```
 
 > **如果字段允许为 NULL，需要1字节记录是否为 NULL 索引最大长度是`768`字节，当字符串过长时，mysql会做一个类似左前缀索引的处理，将前半部分的字符提取出来做索引。**
