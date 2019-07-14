@@ -20,6 +20,8 @@ permalink: volatile
 > 1) 将当前处理器缓存行的数据写回到系统内存。  
 > 2) 这个写回内存的操作会使得其他CPU里缓存了该内存地址的数据无效。  
 
+![](/assets/img/缓存一致性协议.jpg)
+
 ##### 2. volatile变量自增运算测试
 ```vim
 public class VolatileTest {
