@@ -129,7 +129,8 @@ mysql> explain select (select id from actor limit 1) from film;
 > 如果是尖括号括起来的<union M,N>，与<derived N>类似，也是一个临时表，表示这个结果来自于union查询的id为M,N的结果集
 
 ##### `type`列
-> 查询效率最优到最差分别为：`system > const > eq_ref > ref > range > index > ALL`
+> 查询效率最优到最差分别为：  
+> `system > const > eq_ref > ref > fulltext > ref_or_null > unique_subquery > index_subquery > range > index_merge > index > ALL`
 
 - `system`、`const`
 > mysql能对查询的某部分进行优化并将其转化成一个常量（可以看show warnings 的结果）。用于 primary key 或 unique key 的所有列与常数比较时，所以表最多有一个匹配行，读取1次，速度比较快。system是const的特例，表里只有一条元组匹配时为system。
@@ -191,6 +192,11 @@ mysql> explain select * from actor where id > 1;
 |  1 | SIMPLE      | actor | NULL       | range | PRIMARY       | PRIMARY | 4       | NULL |    2 |   100.00 | Using where |
 +----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
 ```
+
+- `index_merge`
+> 表示查询使用了两个以上的索引，最后取交集或者并集，常见and ，or的条件使用了不同的索引。  
+> 官方排序这个在ref_or_null之后，但是实际上由于要读取几个索引，性能可能大部分时间都不如range。
+
 - `index`
 > 扫描全表索引，这通常比ALL快一些。（index是从索引中读取的，而all是从硬盘中读取）
 
@@ -267,8 +273,8 @@ key_len计算规则如下：
 > 这一列是mysql估计要读取并检测的行数，注意这个不是结果集里的行数
 
 ##### `Extra`列
-> 1）、Using index： 查询的列被索引覆盖，并且where筛选条件是索引的前导列，是性能高的表现。一般是使用了覆盖索引(索引包含了所有查询的字段)。对于innodb来说，如果是辅助索引性能会有不少提高  
-> 2）、Using where： 查询的列未被索引覆盖，where筛选条件非索引的前导列  
+> 1）、`Using index`： 查询的列被索引覆盖，并且where筛选条件是索引的前导列，是性能高的表现。一般是使用了覆盖索引(索引包含了所有查询的字段)。对于innodb来说，如果是辅助索引性能会有不少提高  
+> 2）、`Using where`： 查询的列未被索引覆盖，where筛选条件非索引的前导列  
 
 ```vim
 mysql> explain select * from actor where name = 'a';
@@ -279,7 +285,7 @@ mysql> explain select * from actor where name = 'a';
 +----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
 ```
 
-> 3）、Using where Using index： 查询的列被索引覆盖，并且where筛选条件是索引列之一但是不是索引的前导列，意味着无法直接通过索引查找来查询到符合条件的数据  
+> 3）、`Using where Using index`： 查询的列被索引覆盖，并且where筛选条件是索引列之一但是不是索引的前导列，意味着无法直接通过索引查找来查询到符合条件的数据  
 
 ```vim
 mysql> explain select film_id from film_actor where actor_id = 1;
@@ -290,7 +296,7 @@ mysql> explain select film_id from film_actor where actor_id = 1;
 +----+-------------+------------+------------+-------+---------------+-------------------+---------+------+------+----------+--------------------------+
 ```
 
-> 4）、NULL： 查询的列未被索引覆盖，并且where筛选条件是索引的前导列，意味着用到了索引，但是部分字段未被索引覆盖，必须通过“回表”来实现，不是纯粹地用到了索引，也不是完全没用到索引
+> 4）、`NULL`： 查询的列未被索引覆盖，并且where筛选条件是索引的前导列，意味着用到了索引，但是部分字段未被索引覆盖，必须通过“回表”来实现，不是纯粹地用到了索引，也不是完全没用到索引
 
 ```vim
 mysql> explain select * from film_actor where film_id = 1;
@@ -301,7 +307,7 @@ mysql> explain select * from film_actor where film_id = 1;
 +----+-------------+------------+------------+------+-------------------+-------------------+---------+-------+------+----------+-------+
 ```
 
-> 5）、Using index condition： 与Using where类似，查询的列不完全被索引覆盖，where条件中是一个前导列的范围
+> 5）、`Using index condition`： 与Using where类似，查询的列不完全被索引覆盖，where条件中是一个前导列的范围
 
 ```vim
 mysql> explain select * from film_actor where film_id > 1;
@@ -312,7 +318,7 @@ mysql> explain select * from film_actor where film_id > 1;
 +----+-------------+------------+------------+-------+-------------------+-------------------+---------+------+------+----------+-----------------------+
 ```
 
-> 6）、Using temporary： mysql需要创建一张临时表来处理查询。出现这种情况一般是要进行优化的，首先是想到用索引来优化
+> 6）、`Using temporary`： mysql需要创建一张临时表来处理查询。出现这种情况一般是要进行优化的，首先是想到用索引来优化
 
 ```vim
 mysql> explain select distinct name from actor;
@@ -323,7 +329,7 @@ mysql> explain select distinct name from actor;
 +----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-----------------+
 ```
 
-> 7）、Using filesort：**mysql会对结果使用一个外部索引排序，而不是按索引次序从表里读取行。此时mysql会根据联接类型浏览所有符合条件的记录，并保存排序关键字和行指针，然后排序关键字并按顺序检索行信息。这种情况下一般也是要考虑使用索引来优化的**
+> 7）、`Using filesort`：**mysql会对结果使用一个外部索引排序，而不是按索引次序从表里读取行。此时mysql会根据联接类型浏览所有符合条件的记录，并保存排序关键字和行指针，然后排序关键字并按顺序检索行信息。这种情况下一般也是要考虑使用索引来优化的**
 
 ```vim
 mysql> explain select * from actor order by name;
@@ -333,3 +339,11 @@ mysql> explain select * from actor order by name;
 |  1 | SIMPLE      | actor | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |   100.00 | Using filesort |
 +----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
 ```
+
+> 8）、`Using intersect`：表示使用and的各个索引的条件时，该信息表示是从处理结果获取交集  
+`Using union`：表示使用or连接各个使用索引的条件时，该信息表示从处理结果获取并集  
+`Using sort_union`和`Using sort_intersection`：与前面两个对应的类似，只是他们是出现在用and和or查询信息量大时，先查询主键，然后进行排序合并后，才能读取记录并返回。
+
+> 9）、`firstmatch(tb_name)`：5.6.x开始引入的优化子查询的新特性之一，常见于where字句含有in()类型的子查询。如果内表的数据量比较大，就可能出现这个
+
+> 10）、`loosescan(m..n)`：5.6.x之后引入的优化子查询的新特性之一，在in()类型的子查询中，子查询返回的可能有重复记录时，就可能出现这个
