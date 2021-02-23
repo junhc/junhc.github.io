@@ -1,1027 +1,1039 @@
----
+-- -
 layout: default
 title: "Keep"
 permalink: keep
----
+-- -
 <div class="page-content wc-container">
+    <div class="post">
+        <h1>Keep</h1>
+        <p class="post-meta">
+            <span class="categories">
+                自律给我自由
+            </span> |
+            <span class="post-date">
+                {{ '2019-02-18' | date: "%b %-d, %Y" }}
+            </span>
+        </p>
+        <div class="post">
+            <link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+            <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+            <!-- <link href='/assets/css/bootstrap.min.css' rel='stylesheet' /> -->
+            <style>
+            table tr {
+                border-top: none !important;
+                background-color: inherit !important;
+            }
 
-	<div class="post">
-		<h1>Keep</h1>
-		<p class="post-meta">
-      <span class="categories">
-      自律给我自由
-      </span> |
-	    <span class="post-date">
-    	{{ '2019-02-18' | date: "%b %-d, %Y" }}
-	    </span>
-		</p>
-		<div class="post">
-      <link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-      <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-			<!-- <link href='/assets/css/bootstrap.min.css' rel='stylesheet' /> -->
-      <style>
-      table tr {
-        border-top:none!important;
-        background-color:inherit!important;
-      }
-      #calendar a {
-        color:#fff!important;
-      }
-      #calendar a:hover {
-        border-bottom-color: inherit!important;
-      }
-			#calendar a.fc-more {
-        color:#000!important;
-      }
-			#calendar a.fc-more:hover {
-				text-decoration: none!important;
-			}
-      </style>
-      <script src='/assets/js/fullcalendar/moment.min.js'></script>
-      <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
-      <script src='/assets/js/fullcalendar/zh-cn.js'></script>
-			<!-- <script src='/assets/js/popper.min.js'></script> -->
-			<!-- <script src='/assets/js/bootstrap.min.js'></script> -->
-      <script>
-      $(function() {
-        $('#calendar').fullCalendar({
-          editable: false,
-          eventLimit: true,
-					// businessHours: true,
-          locale: 'zh-cn',
-					eventRender: function(event, element) {
-						  if(event.description){
-								 $(element).find('span.fc-title').attr('title', event.description);
-						  }
-					},
-          events: [
-						{
-							title: '☹体重: 77.7KG',
-							description: '身体质量指数: 27 (过重)',
-							start: '2019-02-18',
-							color: '#C30'
-						},
-						{
-							title: '体重: 62KG',
-							description: '干得漂亮，继续下一个目标吧！\n你的人生才刚开始！',
-							start: '2019-05-20',
-							color: '#FFA500'
-						},
-						{
-							title: '1. 目标体重: 60KG',
-							description: '达标则奖励自己预算1000元的发型设计。\n送给29岁的自己：\n学会修理边幅，塑型',
-							start: '2019-05-20',
-							end: '2019-05-20',
-							color: '#EE8262'
-						},
-						{
-							title: '2. 养成早上7点起床的习惯',
-							description: '送给29岁的自己：\n制定今日计划、阅读、吃早餐',
-							start: '2019-05-20',
-							end: '2019-05-20',
-							color: '#EE8262'
-						},
-						{
-							title: '3. 利用碎片时间',
-							description: '送给29岁的自己：\n利用碎片时间阅读，关注时事政策，财经新闻',
-							start: '2019-05-20',
-							end: '2019-05-20',
-							color: '#EE8262'
-						},
-						{
-							title: '4. 坚持每天锻炼一小时',
-							description: '送给29岁的自己：\n晚20、21点健身、拉伸',
-							start: '2019-05-20',
-							end: '2019-05-20',
-							color: '#EE8262'
-						},
-						{
-							title: '5. 不做积极废人',
-							description: '送给29岁的自己：\n1. 定一个切实可行的目标\n2. 找到阻碍目标实现的问题\n3. 诊断这些问题，找到解决这些问题的根源\n4. 规划可以解决这些问题的方案\n5. 做一些必要的事情来执行方案',
-							start: '2019-05-20',
-							end: '2019-05-20',
-							color: '#EE8262'
-						},
-            {
-              title: '12分钟Tabata',
-              start: '2019-02-18 20:45'
-            },
-						{
-              title: '500次跳绳',
-              start: '2019-02-18 21:00'
-            },
-						{
-              title: '1分钟平板支撑',
-              start: '2019-02-18 22:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-02-19 20:30'
-            },
-						{
-              title: '25分钟跳绳',
-              start: '2019-02-19 21:00'
-            },
-						{
-              title: '1分钟平板支撑',
-              start: '2019-02-19 21:45'
-            },
-						{
-              title: '1小时阅读',
-							description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》',
-              start: '2019-02-19 23:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-02-20 21:20'
-            },
-						{
-              title: '25分钟跳绳',
-              start: '2019-02-20 21:40'
-            },
-						{
-              title: '2小时阅读',
-							description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》',
-              start: '2019-02-20 22:45'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-02-21 20:40'
-            },
-						{
-              title: '25分钟跳绳',
-              start: '2019-02-21 21:00'
-            },
-						{
-              title: '1小时阅读',
-							description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》',
-              start: '2019-02-21 23:00',
-            },
-						{
-              title: '45分钟跳绳',
-              start: '2019-02-23 21:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-02-24 23:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-02-26 21:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-02-26 21:30'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-02-27 20:45'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-02-27 21:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-02-28 20:45'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-02-28 21:00'
-            },
-						{
-              title: '30分钟阅读',
-							description: '《把时间当作朋友》第3章第一节',
-              start: '2019-02-28 23:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-01 21:30'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-01 21:45'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-02 21:15'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-02 21:45'
-            },
-						{
-							title: '《把时间当作朋友》',
-							description: '碎片时间计划：第一本《把时间当作朋友》',
-							start: '2019-03-27',
-							//color: '#EE8262'
-							color: '#690'
-						},
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-03 21:30'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-03 22:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-04 22:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-04 22:30'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-05 22:30'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-05 22:45'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-06 22:30'
-            },
-						{
-              title: '35分钟跳绳',
-              start: '2019-03-06 22:45'
-            },
-						{
-              title: '1小时阅读',
-							description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》 第4章',
-              start: '2019-03-06 00:30'
-            },
-						{
-              title: '15分钟跑步',
-              start: '2019-03-07 23:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-07 23:30'
-            },
-						{
-              title: '1小时跑步',
-              start: '2019-03-08 22:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-12 21:15'
-            },
-						{
-              title: '45分钟跳绳',
-              start: '2019-03-12 21:35'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-14 22:00'
-            },
-						{
-              title: '45分钟跳绳',
-              start: '2019-03-14 22:15'
-            },
-						{
-              title: '30分钟跑步',
-              start: '2019-03-16 10:00'
-            },
-						{
-              title: '30分钟腹肌训练',
-              start: '2019-03-17 22:00'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-18 22:15'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-18 22:30'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-19 22:30'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-19 22:45'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-20 22:30'
-            },
-						{
-              title: '45分钟跳绳',
-              start: '2019-03-20 22:45'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-21 22:00'
-            },
-						{
-              title: '45分钟跳绳',
-              start: '2019-03-21 22:15'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-22 23:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-22 23:15'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-24 22:00'
-            },
-						{
-              title: '1小时跑步',
-              start: '2019-03-25 22:00'
-            },
-						{
-              title: '反思',
-							//description: '1. 太笨，不会表达爱，也不够浪漫，没有情调，她是多么需要人陪的一个人，为什么连抱抱都不给呢？要学会制造惊喜，还要有属于我们的纪念日！\n2. 太急，不要在她气头上，去体现自己的存在感。被凶了，就自己憋气的走掉，最后不了了之，没帮她分忧，反而给她添堵。记住你是了解她的，只是沟通方法不对。第一次尝试问，不管如何，都要先控制好自己的“小情绪”。等她冷静下来了，第二次尝试问，甚至可能要尝试多次，无论如何千万不要放任不管，只有她说了，才能起到分忧的作用吧。其实沟通并不难，看的是你的态度和你解决问题的意识。记住不要想着等她来说，她比你更善忘，但她会记住当时的感受。\n3. 太自以为，她找我吐槽工作时，我没有做到很好的倾听，反而第一时间指出她的问题，心想着要从自身找原因，去完善自己，但是这个时候她要的是安慰，而不是“指责”！她也跟我说过多次，我没在意，或者说觉得自己是对的，其实自己没有做到真正的换位思考，设身处地去感受她的心情。\n4. 太宅，生活上不够积极，没规划，要学会合理安排业余时间，带她去感受世界。\n5. 太拖，喜欢“同一时间”做两件事，而且自认为效率很高，其实不然。\n6. 太懒，要学会自律，养成运动的习惯。\n7. 太习惯，习惯了她找我，很少主动找她，缺乏持续关系管理的意识和方法。\n\n宠妻狂魔\n1. 爱你在行动上，你想出去玩，我来给你做攻略\n2. 生活需要仪式感\n3. 哪有什么私房钱，我的钱就是你的钱\n4. 允许你，永远长不大',
-							description: '吾日三省吾身',
-              start: '2019-03-23',
-							color: '#EE8262'
-            },
-						{
-							title: '体重: 73.7KG',
-							description: '还差得远呢',
-							start: '2019-03-26',
-							color: '#FFA500'
-						},
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-26 22:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-26 22:15'
-            },
-						{
-              title: '6分钟俯卧撑入门',
-              start: '2019-03-26 23:00'
-						},
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-27 21:15'
-            },
-						{
-              title: '40分钟跳绳',
-              start: '2019-03-27 22:30'
-            },
-						{
-              title: '12分钟Tabata',
-              start: '2019-03-29 22:15'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-03-29 22:30'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-01 21:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-04-01 21:15'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-03 21:30'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-04-03 21:45'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-04 20:50'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-04-04 21:10'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-06 20:00'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-04-06 20:15'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-07 20:00'
-            },
-						{
-              title: '15分钟跳绳',
-              start: '2019-04-07 20:15'
-            },
-						{
-              title: 'DW',
-							//description: '“等我”，我一定会变得更优秀。\n其实最想反过来说，“我等”。在一起的这些年，我一直都在等，等你想结婚了，我就娶你。',
-              start: '2019-04-10',
-							color: '#EE8262'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-13 20:15'
-            },
-						{
-              title: '25分钟跳绳',
-              start: '2019-04-13 20:30'
-            },
-						{
-              title: '15分钟腹肌训练',
-              start: '2019-04-13 21:00'
-            },
-						{
-              title: '15分钟腹肌训练',
-              start: '2019-04-15 23:00'
-            },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-16 22:00'
-            },
-						{
-              title: '20分钟跳绳',
-              start: '2019-04-16 22:20'
-            },
-						{
-              title: '15分钟腹肌训练',
-              start: '2019-04-16 22:40'
-            },
-						{
-							title: '同理心',
-							description: '1. 将心比心\n能够将当事人换成自己，设身处地去感受和体谅他人，并以此作为处理工作中人际关系、解决沟通问题的基础。\n2. 感觉敏感度\n具备较高的体察自我和他人的情绪、感受的能力，能够通过表情、语气和肢体等非言语信息，准确判断和体认他人的情绪与情感状态。\n3. 同理心沟通\n听到说者想说，说到听者想听。\n4. 同理心处事\n以对方有兴趣的方式，做对方认为重要的事情。',
-							start: '2019-04-17',
-							color: '#690'
-						},
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-17 20:45'
-            },
-						{
-              title: '25分钟跳绳',
-              start: '2019-04-17 21:00'
-            },
-						{
-              title: '15分钟腹肌训练',
-              start: '2019-04-17 21:40'
-            },
-						// {
-						// 	title: '内楗',
-						// 	description: '内同纳，内就是使人采纳自己的建议；楗是一只锁，如何你说的话像一把钥匙一样插到锁里面轻轻的一转，对方心门就会打开，这是一门高深的学问。\n如何掌握内的方法？\n1. 悄悄地揣测、度量、策划事情\n2. 要寻找顺畅的途径\n3. 暗中分析对错，透彻辨明得失\n4. 以自己观念来进言，应当符合时宜\n5. 详细地思考后再进言，以适应形势',
-						// 	start: '2019-04-18',
-						// 	color: '#690'
-						// },
-						{
-              title: '15分钟Tabata',
-              start: '2019-04-18 21:20'
-            },
-						{
-              title: '30分钟跳绳',
-              start: '2019-04-18 21:40'
-            },
-						{
-							title: '记忆方法',
-							description: '1. 想长期记忆知识，必须经过“加工”；机械复述并不能有效增强记忆\n2. 精细复述：把要记住的内容和已有的知识经验联系起来\n3. 记忆的诀窍，记“少”不记多，而后由“少”记多',
-							start: '2019-04-19',
-							color: '#690'
-						},
-						{
-              title: '20分钟Tabata',
-              start: '2019-04-19 21:10'
-            },
-						{
-              title: '20分钟跳绳',
-              start: '2019-04-19 21:40'
-            },
-						{
-							title: '好奇心',
-							description: '晚上跑完步，准备回来的时候，在上海科技馆地铁口，柱形灯光的地方，遇到一个从虹口区过来的大学生搭讪，才知道他是在学校看到“北方”的天空有一片“发光的云”（突然想起，某天下班，我在小区也看到过，可惜我没多想），说闲来无事，出于好奇，于是就微博，百度搜索了一番，然后就搭着地铁找到了这里。我对他的好奇心给予了高度的赞赏，我走的时候，他还在琢磨，为什么这灯光会出现在“北方”的天空？\n\n认知性好奇，让你保持对未知世界永不停息的热情。\n1. 广泛的知识积累\n2. 始终保持对新事物的开放态度，对于新行业和新知识保持求知欲\n3. 在无聊中发现有趣，始终用有趣的眼光观察世界和周围的生活',
-							start: '2019-04-20',
-							color: '#F08080'
-						},
-						{
-              title: '1小时跑步',
-              start: '2019-04-20 20:00'
-            },
-						{
-							title: '《Memcached核心精粹》',
-							start: '2019-04-21',
-							color: '#690'
-						},
-						{
-							title: '50个仰卧起坐',
-							start: '2019-04-20 21:00'
-						},
-						{
-              title: '30分钟腹肌训练',
-              start: '2019-04-21 22:30'
-            },
-						{
-              title: '15分钟腹肌训练',
-              start: '2019-04-22 23:45'
-            },
-						{
-              title: '20分钟Tabata',
-              start: '2019-04-23 21:10'
-            },
-						{
-              title: '20分钟跳绳',
-              start: '2019-04-23 21:40'
-            },
-						{
-              title: '15分钟腹肌训练',
-              start: '2019-04-23 23:45'
-            },
-						{
-							title: '体重: 67.8KG',
-							description: '加油',
-							start: '2019-04-25',
-							color: '#FFA500'
-						},
-						{
-              title: '20分钟Tabata',
-              start: '2019-04-25 21:10'
-            },
-						{
-              title: '20分钟跳绳',
-              start: '2019-04-25 21:30'
-            },
-						{
-              title: '30分钟腹肌训练',
-              start: '2019-04-28 22:00'
-            },
-						{
-              title: '30分钟腹肌训练',
-              start: '2019-04-30 23:00'
-            },
-						{
-              title: '1小时跑步',
-              start: '2019-05-01 20:00'
-            },
-						{
-              title: '20分钟腹肌训练',
-              start: '2019-05-02 23:00',
-							description: '跑步机初体验，肌肉拉伤。'
-            },
-						{
-              title: '30分钟跑步',
-              start: '2019-05-03 20:00'
-            },
-						{
-              title: '20分钟腹肌训练',
-              start: '2019-05-03 23:00'
-            },
-						{
-              title: '20分钟腹肌训练',
-              start: '2019-05-04 19:30'
-            },
-						{
-              title: '20分钟Tabata',
-              start: '2019-05-04 20:00'
-            },
-						{
-              title: '20分钟跳绳',
-              start: '2019-05-04 20:30'
-            },
-						{
-              title: '20分钟Tabata',
-              start: '2019-05-05 22:00'
-            },
-						{
-              title: '20分钟腹肌训练',
-              start: '2019-05-05 22:30'
-            },
-						{
-							title: '《刻意练习》',
-							description: '目标明确，专注投入，及时反馈，不断挑战舒适区，找到行业优秀导师，强化动机，坚持练习。',
-							url: '/刻意练习',
-							start: '2019-05-06',
-							color: '#E9967A'
-						},
-						{
-							title: '《基督山伯爵》',
-							description: '如果你渴望得到某样东西，你得让TA自由，如果TA回到你身边，TA就是属于你的，如果TA不会回来，你就从未拥有过TA。',
-							start: '2019-05-06',
-							color: '#690'
-						},
-						{
-							title: '《52赫兹》',
-							description: '“喂，你知不知道那只频率为52赫兹的鲸鱼”\n “恩？”\n“她叫Alice，她独自歌唱，独自旅行，从太平洋穿越西北通道后到了大西洋，是那么的独一无二”\n“这意味着，彼此发出的问候，彼此永远也无法收到。对它来说，这个世界上，只有它一头鲸鱼”\n“就好像，我跨越万千人海寻觅，人海却穿越我的灵魂，始终无法产生共鸣”\n“一只手的掌声是怎样的呢? 它可以引起52赫兹的共鸣 ”\n\n这个故事还有另外一个名字叫做《这个世界怎么只有我自己》',
-							start: '2019-05-06',
-							color: '#690'
-						},
-						{
-							title: '《终身学习》',
-							description: '事实上，固定型思维模式是为了保护你，让你感到“安全”。但它的方法却做不到“成长”。所以，用成长型思维模式和它沟通，教育它，它就能支持和帮助你。',
-							url: '/终身学习',
-							start: '2019-05-07',
-							color: '#E9967A'
-						},
-						{
-              title: '20分钟跑步',
-              start: '2019-05-07 20:50'
-            },
-						{
-              title: '30分钟Tabata',
-              start: '2019-05-07 21:15'
-            },
-						{
-              title: '30分钟Tabata',
-              start: '2019-05-08 22:00'
-            },
-						{
-						  title: '《心流》',
-							description: '当你全身心地投入某件事，达到忘我的程度，并由此获得内心的秩序与安宁时，一种极大的满足感悄悄地潜入了你的心，使你快乐。这就是“心流”体验。',
-							url: '/心流',
-							start: '2019-05-08',
-							color: '#E9967A'
-						},
-						{
-							title: '读书而不化',
-							description: '南怀瑾说，学佛一年佛在眼前，学佛两年佛在大殿，学佛三年佛在西天，越来越远了。读书而不化，犹如学佛的人，不但没有变好，反而更加的贪嗔痴，何苦来哉？',
-							start: '2019-05-09',
-							color: '#690'
-						},
-						{
-							title: '《坚毅》',
-							description: '像烤蛋糕那样培育坚毅品质\n1. 充满热情\n2. 追求幸福，幸福五要素：积极情绪、投入、人际关系、意义和成就\n3. 设定目标\n4. 自我调节\n5. 敢于冒险，“毕竟，如果你不去摘星星的话，哪一天你发现自己摘不到，也不会感到难过。”\n6. 有耐心\n7. 保持谦卑\n8. 坚持，提醒自己，要假装的那个对象，正是你想变成的那个人。',
-							url: '/坚毅',
-							start: '2019-05-09',
-							color: '#E9967A'
-						},
-						{
-							title: '30分钟Tabata',
-							start: '2019-05-09 22:00'
-						},
-						{
-							title: '30分钟Tabata',
-							start: '2019-05-10 22:00'
-						},
-						{
-							title: '8分钟Tabata',
-							start: '2019-05-11 07:15'
-						},
-						{
-							title: '暴走32000步',
-							start: '2019-05-11'
-						},
-						{
-              title: '20分钟腹肌训练',
-              start: '2019-05-12 22:30'
-            },
-						{
-							title: '《睡眠革命》',
-							description: 'R90睡眠方案，就是打破8小时睡眠窠臼\n每周获得35个睡眠周期是最理想的，平均到每天大约是5个睡眠周期，一个完整的睡眠周期约为90分钟。',
-							url: '/睡眠革命',
-							start: '2019-05-12',
-							color: '#F08080'
-						},
-						{
-							title:'《飞鸟集》',
-							description: '你微笑的看着我，不说一句话。\n而我知道，为了这个，我已经等了很久了。',
-							start: '2019-05-13',
-							color: '#690'
-						},
-						{
-							title:'《少有人走的路》',
-							description: '自律四原则\n1. 推迟满足感\n2. 承担责任\n3. 忠于事实，也意味着我们必须敢于接受外界的质疑和挑战，允许别人来检视我们的地图是否过期\n4. 保持平衡\n\n爱的表现\n1. 努力倾听，帮助对方成长\n2. 不惧风险：不会因为害怕失去就放弃去爱\n3. 保持自己独立，也允许伴侣独立\n4. 充分投入：由承诺推动，持续或渐增的投入是爱的基石\n5. 勤于自省，平等交流：遇到矛盾与冲突，恰当地提出想法而非自大地随意批评\n6. 懂得自律：懂得约束爱的能量，不滥爱，不出轨，对伴侣和孩子有责任感\n\n克服懒惰\n路漫漫其修远兮，我们只有常常提醒自己放弃当下的逸乐，推迟满足感，勇于承担责任，主动投身于问题的核心，厘清事实，及时解决问题',
-							url: '/少有人走的路',
-							start: '2019-05-14',
-							color: '#F08080'
-						},
-						{
-							title: '30分钟Tabata',
-							start: '2019-05-14 21:10'
-						},
-						{
-              title: '20分钟腹肌训练',
-              start: '2019-05-14 22:00'
-            },
-						{
-							title:'《反脆弱》',
-							url: '/反脆弱',
-							start: '2019-05-16',
-							color: '#F08080'
-						},
-						{
-							title: '30分钟Tabata',
-							start: '2019-05-16 21:00'
-						},
-						{
-							title:'《活好》',
-							url: '/活好',
-							start: '2019-05-16',
-							color: '#F08080'
-						},
-						{
-							title:'《你要的是幸福，还是对错》',
-							url: '/你要的是幸福，还是对错',
-							start: '2019-05-19',
-							color: '#F08080'
-						},
-						{
-							title: '30分钟Tabata',
-							start: '2019-05-18 21:00'
-						},
-						{
-							title:'《掌控》',
-							url: '/掌控',
-							start: '2019-05-20',
-							color: '#F08080'
-						},
-						{
-							title:'《能力缺陷》',
-							url: '/能力缺陷',
-							start: '2019-05-21',
-							color: '#F08080'
-						},
-						{
-							title: '30分钟跳绳',
-							start: '2019-05-21 21:00'
-						},
-						{
-							title:'《我的情绪为何总被他人左右》',
-							url: '/我的情绪为何总被他人左右',
-							start: '2019-05-22',
-							color: '#F08080'
-						},
-						{
-							title: '20分钟腹肌训练',
-							start: '2019-06-01 21:00'
-						},
-						{
-							title: '30分钟Tabata',
-							start: '2019-06-02 20:00'
-						},
-						{
-							title: '30分钟跳绳',
-							start: '2019-06-03 21:00'
-						},
-						{
-							title: '20分钟腹肌训练',
-							start: '2019-06-03 21:40'
-						},
-						{
-							title:'《高绩效教练》',
-							description: 'GOAL目标: 期望的成果是什么\n你的目标是什么\n什么时候实现\n实现目标的标志是什么\n如果需要量化的话，拿什么量化你的目标\n\nREALITY现实: 挖掘真相、澄清、理解\n目前的状况怎样\n你都做了些什么去实现目标\n是什么原因阻止你不能实现目标\n其他相关的因素有哪些\n\nOPTIONS选择: 探寻备选方案、征询建议\n为改变目前的情况，你能做什么\n你曾经见过或听说过别人有哪些做法\n请陈述你觉得采取行动的可能性，打分\n如果调整哪个指标，可以提高行动的可能性\n\nWILL意愿: 阐明行动计划、建立衡量标准、规定分工角色、建立自我责任\n何时是你采取下一步的最好时机\n可能遇到的障碍是什么\n你何时需要支持，以及如何获得支持',
-							url: '/高绩效教练',
-							start: '2019-06-03',
-							color: '#F08080'
-						},
-						{
-							title: '《在最低迷的时光里》',
-							description: '我们用逆商，自律与热爱，熬过雨雪风霜，终能等到春暖花开。\n\n逆商，让人绝地反击\n自律，让人不负此生\n热爱，让我们成为疲惫生活里的英雄',
-							start: '2019-06-03',
-							color: '#F08080'
-						},
-						{
-							title: '20分钟腹肌训练',
-							start: '2019-06-05 22:00'
-						},
-						{
-							title: '《零售的哲学》',
-							description: '',
-							start: '2019-06-06',
-							color: '#F08080'
-						},
-						{
-							title: '20分钟腹肌训练',
-							start: '2019-06-07 21:00'
-						},
-						{
-							title: '徒步25公里',
-							start: '2019-06-08 05:00'
-						},
-						{
-							title: '《管理十诫》',
-							description: '',
-							start: '2019-06-09',
-							color: '#F08080'
-						},
-						{
-							title: '《他人的力量》',
-							description: '',
-							start: '2019-06-10',
-							color: '#F08080'
-						},
-						{
-							title: '《第3选择》',
-							description: '',
-							start: '2019-06-11',
-							color: '#F08080'
-						},
-						{
-							title: '20分钟腹肌训练',
-							start: '2019-06-11 22:00'
-						},
-						{
-							title: '《正念的力量》',
-							description: '',
-							start: '2019-06-12',
-							color: '#F08080'
-						},
-						{
-							title: '3D2Y',
-							description: '听着，在品尝过胜利与失败，仓皇逃窜痛哭流涕的滋味之后，男人才会真正长大。\n哭也没有关系，要跨越过去。',
-							start: '2020-09-01',
-							color: '#C30'
-						},
-						{
-							title: '20个俯卧撑',
-							start: '2019-07-02 22:00'
-						},
-						{
-							title: '20个俯卧撑',
-							start: '2019-07-03 23:00'
-						},
-						{
-							title: '50个卷腹',
-							start: '2019-07-03 23:10'
-						},
-						{
-							title: '1分钟平板支撑',
-							start: '2019-07-03 23:15'
-						},
-						{
-							title: '20个俯卧撑',
-							start: '2019-07-04 23:00'
-						},
-						{
-							title: '50个卷腹',
-							start: '2019-07-04 23:10'
-						},
-						{
-							title: '1分钟平板支撑',
-							start: '2019-07-04 23:15'
-						},
-						{
-							title: '《幸福的婚姻》',
-							description: '父母可以给予孩子的最有意义的礼物之一是承认自己的错误。',
-							start: '2019-07-18',
-							color: '#F08080'
-						},
-						{
-							title: '面试',
-							description: '1. 保持冷静，搜集信息\n2. 杜绝沉默，适当表达\n把面试当做一次探讨和沟通，即使一时没完全给出答案，也可以和面试官探讨，阐述你不成熟的想法、思路以及困惑。\n所以不要吝啬开口，勇敢地表达你的想法，哪怕思路不成熟，哪怕只是隐约知道怎么做，也可以试着和面试官分享。\n3. 回避问题，展示自己',
-							start: '2019-07-20',
-							color: '#F08080'
-						},
-						{
-							title: '墨菲定律',
-							description: '1. 任何事都没有表面看起来那么简单。\n2. 所有的事都会比你预计的时间长。\n3. 可能出错的事总会出错。\n4. 如果你担心某种情况发生，那么它就更可能发生。',
-							start: '2019-07-20',
-							color: '#F08080'
-						},
-						{
-							title: '腹肌撕裂20分钟',
-							start: '2019-08-21 22:00'
-						},
-						{
-							title: '腹肌撕裂25分钟',
-							start: '2019-08-22 22:00'
-						},
-						// {
-						// 	title: '目标: 八块腹肌',
-						// 	description: '送给自己的新年礼物\n每天3/4组\n1. 波比跳 15个\n2. 高抬腿 30个\n3. 俯身登山 30个\n4. 深蹲 20个\n5. 开合跳 30个\n6. 平板支持 30s\n+ 腹肌撕裂者',
-						// 	start: '2019-12-31',
-						// 	end: '2019-12-31',
-						// 	color: '#EE8262'
-						// },
-						{
-							title: '25分钟Tabata',
-							description: '3组',
-							start: '2019-11-18 21:30'
-						},
-						{
-							title: '1分钟平板支撑',
-							description: '☹下班晚了',
-							start: '2019-11-19 23:00'
-						},
-						{
-							title: '30分钟Tabata',
-							description: '4组',
-							start: '2019-11-20 21:30'
-						},
-						{
-							title: '30分钟Tabata',
-							description: '4组',
-							start: '2019-11-21 21:30'
-						},
-						{
-							title: '50个卷腹',
-							start: '2019-11-21 22:00'
-						},
-						{
-							title: '30分钟Tabata',
-							description: '4组',
-							start: '2019-11-22 21:30'
-						},
-						{
-							title: '30分钟Tabata',
-							description: '4组',
-							start: '2019-11-26 21:30'
-						},
-						{
-							title: '1分钟平板支撑',
-							description: '☹吃烤肉去了',
-							start: '2019-11-28 23:00'
-						},
-						{
-							title: '腹肌撕裂30分钟',
-							start: '2019-12-01 21:00'
-						},
-						{
-							title: '1组腹肌撕裂',
-							start: '2019-12-02 22:00'
-						},
-            {
-              title: '1分钟平板支撑',
-              start: '2019-12-03 23:00'
-            },
-            {
-              title: '30分钟跳绳',
-              start: '2019-12-05 23:00'
-            },
-						{
-							title: '3组腹肌撕裂',
-							start: '2019-12-09 22:00'
-						},
-            {
-              title: '1分钟平板支撑',
-              start: '2019-12-10 23:00'
-            },
-						{
-              title: '30分钟Tabata',
-							description: '3组',
-              start: '2020-02-25 22:00'
-            },
-						{
-              title: '30分钟Tabata',
-							description: '3组',
-              start: '2020-02-27 22:00'
-            },
-						{
-              title: '20分钟HIT减脂运动',
-							description: '3组',
-              start: '2020-03-01 12:00'
-            },
-						{
-              title: '30分钟HIT减脂运动',
-							description: '4组',
-              start: '2020-03-02 22:00'
-            },
-						{
-              title: '30分钟HIT减脂运动',
-							description: '3组',
-              start: '2020-03-03 22:00'
-            },
-						{
-							title: '腹肌撕裂20分钟',
-							start: '2020-03-07 23:00'
-						},
-						{
-              title: '30分钟HIT减脂运动',
-							description: '3组',
-              start: '2020-03-09 22:00'
-            },
-						{
-              title: '30分钟HIT减脂运动',
-							description: '3组',
-              start: '2020-03-10 22:00'
-            },
-						{
-              title: '30分钟HIT减脂运动',
-							description: '3组',
-              start: '2020-03-15 22:00'
-            },
-						{
-							title: '腹肌撕裂20分钟',
-							start: '2020-03-16 22:00'
-						},
-						{
-							title: '腹肌撕裂20分钟',
-							start: '2020-03-17 22:00'
-						},
-						{
-							title: '腹肌撕裂20分钟',
-							start: '2020-03-19 22:00'
-						},
-						{
-							title: '腹肌撕裂20分钟',
-							start: '2020-03-21 22:00'
-						}
-          ]
-        });
-      });
-      </script>
-      <div id='calendar' style="width:800px;"></div>
-		</div>
-	</div>
+            #calendar a {
+                color: #fff !important;
+            }
 
+            #calendar a:hover {
+                border-bottom-color: inherit !important;
+            }
+
+            #calendar a.fc-more {
+                color: #000 !important;
+            }
+
+            #calendar a.fc-more:hover {
+                text-decoration: none !important;
+            }
+            </style>
+            <script src='/assets/js/fullcalendar/moment.min.js'></script>
+            <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
+            <script src='/assets/js/fullcalendar/zh-cn.js'></script>
+            <!-- <script src='/assets/js/popper.min.js'></script> -->
+            <!-- <script src='/assets/js/bootstrap.min.js'></script> -->
+            <script>
+            $(function() {
+                $('#calendar').fullCalendar({
+                    editable: false,
+                    eventLimit: true,
+                    // businessHours: true,
+                    locale: 'zh-cn',
+                    validRange: function(currentDate) {
+                        return {
+                            start: currentDate.clone().subtract(1, 'months'),
+                            end: currentDate
+                        }
+                    },
+                    eventRender: function(event, element) {
+                        if (event.description) {
+                            $(element).find('span.fc-title').attr('title', event.description);
+                        }
+                    },
+                    events: [{
+                            title: '☹体重: 77.7KG',
+                            description: '身体质量指数: 27 (过重)',
+                            start: '2019-02-18',
+                            color: '#C30'
+                        },
+                        {
+                            title: '体重: 62KG',
+                            description: '干得漂亮，继续下一个目标吧！\n你的人生才刚开始！',
+                            start: '2019-05-20',
+                            color: '#FFA500'
+                        },
+                        {
+                            title: '1. 目标体重: 60KG',
+                            description: '达标则奖励自己预算1000元的发型设计。\n送给29岁的自己：\n学会修理边幅，塑型',
+                            start: '2019-05-20',
+                            end: '2019-05-20',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '2. 养成早上7点起床的习惯',
+                            description: '送给29岁的自己：\n制定今日计划、阅读、吃早餐',
+                            start: '2019-05-20',
+                            end: '2019-05-20',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '3. 利用碎片时间',
+                            description: '送给29岁的自己：\n利用碎片时间阅读，关注时事政策，财经新闻',
+                            start: '2019-05-20',
+                            end: '2019-05-20',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '4. 坚持每天锻炼一小时',
+                            description: '送给29岁的自己：\n晚20、21点健身、拉伸',
+                            start: '2019-05-20',
+                            end: '2019-05-20',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '5. 不做积极废人',
+                            description: '送给29岁的自己：\n1. 定一个切实可行的目标\n2. 找到阻碍目标实现的问题\n3. 诊断这些问题，找到解决这些问题的根源\n4. 规划可以解决这些问题的方案\n5. 做一些必要的事情来执行方案',
+                            start: '2019-05-20',
+                            end: '2019-05-20',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-18 20:45'
+                        },
+                        {
+                            title: '500次跳绳',
+                            start: '2019-02-18 21:00'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            start: '2019-02-18 22:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-19 20:30'
+                        },
+                        {
+                            title: '25分钟跳绳',
+                            start: '2019-02-19 21:00'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            start: '2019-02-19 21:45'
+                        },
+                        {
+                            title: '1小时阅读',
+                            description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》',
+                            start: '2019-02-19 23:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-20 21:20'
+                        },
+                        {
+                            title: '25分钟跳绳',
+                            start: '2019-02-20 21:40'
+                        },
+                        {
+                            title: '2小时阅读',
+                            description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》',
+                            start: '2019-02-20 22:45'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-21 20:40'
+                        },
+                        {
+                            title: '25分钟跳绳',
+                            start: '2019-02-21 21:00'
+                        },
+                        {
+                            title: '1小时阅读',
+                            description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》',
+                            start: '2019-02-21 23:00',
+                        },
+                        {
+                            title: '45分钟跳绳',
+                            start: '2019-02-23 21:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-02-24 23:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-26 21:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-02-26 21:30'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-27 20:45'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-02-27 21:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-02-28 20:45'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-02-28 21:00'
+                        },
+                        {
+                            title: '30分钟阅读',
+                            description: '《把时间当作朋友》第3章第一节',
+                            start: '2019-02-28 23:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-01 21:30'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-01 21:45'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-02 21:15'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-02 21:45'
+                        },
+                        {
+                            title: '《把时间当作朋友》',
+                            description: '碎片时间计划：第一本《把时间当作朋友》',
+                            start: '2019-03-27',
+                            //color: '#EE8262'
+                            color: '#690'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-03 21:30'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-03 22:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-04 22:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-04 22:30'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-05 22:30'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-05 22:45'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-06 22:30'
+                        },
+                        {
+                            title: '35分钟跳绳',
+                            start: '2019-03-06 22:45'
+                        },
+                        {
+                            title: '1小时阅读',
+                            description: '《Spring技术内幕：深入解析Spring架构与设计原理（第2版）》 第4章',
+                            start: '2019-03-06 00:30'
+                        },
+                        {
+                            title: '15分钟跑步',
+                            start: '2019-03-07 23:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-07 23:30'
+                        },
+                        {
+                            title: '1小时跑步',
+                            start: '2019-03-08 22:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-12 21:15'
+                        },
+                        {
+                            title: '45分钟跳绳',
+                            start: '2019-03-12 21:35'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-14 22:00'
+                        },
+                        {
+                            title: '45分钟跳绳',
+                            start: '2019-03-14 22:15'
+                        },
+                        {
+                            title: '30分钟跑步',
+                            start: '2019-03-16 10:00'
+                        },
+                        {
+                            title: '30分钟腹肌训练',
+                            start: '2019-03-17 22:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-18 22:15'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-18 22:30'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-19 22:30'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-19 22:45'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-20 22:30'
+                        },
+                        {
+                            title: '45分钟跳绳',
+                            start: '2019-03-20 22:45'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-21 22:00'
+                        },
+                        {
+                            title: '45分钟跳绳',
+                            start: '2019-03-21 22:15'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-22 23:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-22 23:15'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-24 22:00'
+                        },
+                        {
+                            title: '1小时跑步',
+                            start: '2019-03-25 22:00'
+                        },
+                        {
+                            title: '反思',
+                            //description: '1. 太笨，不会表达爱，也不够浪漫，没有情调，她是多么需要人陪的一个人，为什么连抱抱都不给呢？要学会制造惊喜，还要有属于我们的纪念日！\n2. 太急，不要在她气头上，去体现自己的存在感。被凶了，就自己憋气的走掉，最后不了了之，没帮她分忧，反而给她添堵。记住你是了解她的，只是沟通方法不对。第一次尝试问，不管如何，都要先控制好自己的“小情绪”。等她冷静下来了，第二次尝试问，甚至可能要尝试多次，无论如何千万不要放任不管，只有她说了，才能起到分忧的作用吧。其实沟通并不难，看的是你的态度和你解决问题的意识。记住不要想着等她来说，她比你更善忘，但她会记住当时的感受。\n3. 太自以为，她找我吐槽工作时，我没有做到很好的倾听，反而第一时间指出她的问题，心想着要从自身找原因，去完善自己，但是这个时候她要的是安慰，而不是“指责”！她也跟我说过多次，我没在意，或者说觉得自己是对的，其实自己没有做到真正的换位思考，设身处地去感受她的心情。\n4. 太宅，生活上不够积极，没规划，要学会合理安排业余时间，带她去感受世界。\n5. 太拖，喜欢“同一时间”做两件事，而且自认为效率很高，其实不然。\n6. 太懒，要学会自律，养成运动的习惯。\n7. 太习惯，习惯了她找我，很少主动找她，缺乏持续关系管理的意识和方法。\n\n宠妻狂魔\n1. 爱你在行动上，你想出去玩，我来给你做攻略\n2. 生活需要仪式感\n3. 哪有什么私房钱，我的钱就是你的钱\n4. 允许你，永远长不大',
+                            description: '吾日三省吾身',
+                            start: '2019-03-23',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '体重: 73.7KG',
+                            description: '还差得远呢',
+                            start: '2019-03-26',
+                            color: '#FFA500'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-26 22:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-26 22:15'
+                        },
+                        {
+                            title: '6分钟俯卧撑入门',
+                            start: '2019-03-26 23:00'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-27 21:15'
+                        },
+                        {
+                            title: '40分钟跳绳',
+                            start: '2019-03-27 22:30'
+                        },
+                        {
+                            title: '12分钟Tabata',
+                            start: '2019-03-29 22:15'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-03-29 22:30'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-01 21:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-04-01 21:15'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-03 21:30'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-04-03 21:45'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-04 20:50'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-04-04 21:10'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-06 20:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-04-06 20:15'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-07 20:00'
+                        },
+                        {
+                            title: '15分钟跳绳',
+                            start: '2019-04-07 20:15'
+                        },
+                        {
+                            title: 'DW',
+                            //description: '“等我”，我一定会变得更优秀。\n其实最想反过来说，“我等”。在一起的这些年，我一直都在等，等你想结婚了，我就娶你。',
+                            start: '2019-04-10',
+                            color: '#EE8262'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-13 20:15'
+                        },
+                        {
+                            title: '25分钟跳绳',
+                            start: '2019-04-13 20:30'
+                        },
+                        {
+                            title: '15分钟腹肌训练',
+                            start: '2019-04-13 21:00'
+                        },
+                        {
+                            title: '15分钟腹肌训练',
+                            start: '2019-04-15 23:00'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-16 22:00'
+                        },
+                        {
+                            title: '20分钟跳绳',
+                            start: '2019-04-16 22:20'
+                        },
+                        {
+                            title: '15分钟腹肌训练',
+                            start: '2019-04-16 22:40'
+                        },
+                        {
+                            title: '同理心',
+                            description: '1. 将心比心\n能够将当事人换成自己，设身处地去感受和体谅他人，并以此作为处理工作中人际关系、解决沟通问题的基础。\n2. 感觉敏感度\n具备较高的体察自我和他人的情绪、感受的能力，能够通过表情、语气和肢体等非言语信息，准确判断和体认他人的情绪与情感状态。\n3. 同理心沟通\n听到说者想说，说到听者想听。\n4. 同理心处事\n以对方有兴趣的方式，做对方认为重要的事情。',
+                            start: '2019-04-17',
+                            color: '#690'
+                        },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-17 20:45'
+                        },
+                        {
+                            title: '25分钟跳绳',
+                            start: '2019-04-17 21:00'
+                        },
+                        {
+                            title: '15分钟腹肌训练',
+                            start: '2019-04-17 21:40'
+                        },
+                        // {
+                        //  title: '内楗',
+                        //  description: '内同纳，内就是使人采纳自己的建议；楗是一只锁，如何你说的话像一把钥匙一样插到锁里面轻轻的一转，对方心门就会打开，这是一门高深的学问。\n如何掌握内的方法？\n1. 悄悄地揣测、度量、策划事情\n2. 要寻找顺畅的途径\n3. 暗中分析对错，透彻辨明得失\n4. 以自己观念来进言，应当符合时宜\n5. 详细地思考后再进言，以适应形势',
+                        //  start: '2019-04-18',
+                        //  color: '#690'
+                        // },
+                        {
+                            title: '15分钟Tabata',
+                            start: '2019-04-18 21:20'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-04-18 21:40'
+                        },
+                        {
+                            title: '记忆方法',
+                            description: '1. 想长期记忆知识，必须经过“加工”；机械复述并不能有效增强记忆\n2. 精细复述：把要记住的内容和已有的知识经验联系起来\n3. 记忆的诀窍，记“少”不记多，而后由“少”记多',
+                            start: '2019-04-19',
+                            color: '#690'
+                        },
+                        {
+                            title: '20分钟Tabata',
+                            start: '2019-04-19 21:10'
+                        },
+                        {
+                            title: '20分钟跳绳',
+                            start: '2019-04-19 21:40'
+                        },
+                        {
+                            title: '好奇心',
+                            description: '晚上跑完步，准备回来的时候，在上海科技馆地铁口，柱形灯光的地方，遇到一个从虹口区过来的大学生搭讪，才知道他是在学校看到“北方”的天空有一片“发光的云”（突然想起，某天下班，我在小区也看到过，可惜我没多想），说闲来无事，出于好奇，于是就微博，百度搜索了一番，然后就搭着地铁找到了这里。我对他的好奇心给予了高度的赞赏，我走的时候，他还在琢磨，为什么这灯光会出现在“北方”的天空？\n\n认知性好奇，让你保持对未知世界永不停息的热情。\n1. 广泛的知识积累\n2. 始终保持对新事物的开放态度，对于新行业和新知识保持求知欲\n3. 在无聊中发现有趣，始终用有趣的眼光观察世界和周围的生活',
+                            start: '2019-04-20',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '1小时跑步',
+                            start: '2019-04-20 20:00'
+                        },
+                        {
+                            title: '《Memcached核心精粹》',
+                            start: '2019-04-21',
+                            color: '#690'
+                        },
+                        {
+                            title: '50个仰卧起坐',
+                            start: '2019-04-20 21:00'
+                        },
+                        {
+                            title: '30分钟腹肌训练',
+                            start: '2019-04-21 22:30'
+                        },
+                        {
+                            title: '15分钟腹肌训练',
+                            start: '2019-04-22 23:45'
+                        },
+                        {
+                            title: '20分钟Tabata',
+                            start: '2019-04-23 21:10'
+                        },
+                        {
+                            title: '20分钟跳绳',
+                            start: '2019-04-23 21:40'
+                        },
+                        {
+                            title: '15分钟腹肌训练',
+                            start: '2019-04-23 23:45'
+                        },
+                        {
+                            title: '体重: 67.8KG',
+                            description: '加油',
+                            start: '2019-04-25',
+                            color: '#FFA500'
+                        },
+                        {
+                            title: '20分钟Tabata',
+                            start: '2019-04-25 21:10'
+                        },
+                        {
+                            title: '20分钟跳绳',
+                            start: '2019-04-25 21:30'
+                        },
+                        {
+                            title: '30分钟腹肌训练',
+                            start: '2019-04-28 22:00'
+                        },
+                        {
+                            title: '30分钟腹肌训练',
+                            start: '2019-04-30 23:00'
+                        },
+                        {
+                            title: '1小时跑步',
+                            start: '2019-05-01 20:00'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-05-02 23:00',
+                            description: '跑步机初体验，肌肉拉伤。'
+                        },
+                        {
+                            title: '30分钟跑步',
+                            start: '2019-05-03 20:00'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-05-03 23:00'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-05-04 19:30'
+                        },
+                        {
+                            title: '20分钟Tabata',
+                            start: '2019-05-04 20:00'
+                        },
+                        {
+                            title: '20分钟跳绳',
+                            start: '2019-05-04 20:30'
+                        },
+                        {
+                            title: '20分钟Tabata',
+                            start: '2019-05-05 22:00'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-05-05 22:30'
+                        },
+                        {
+                            title: '《刻意练习》',
+                            description: '目标明确，专注投入，及时反馈，不断挑战舒适区，找到行业优秀导师，强化动机，坚持练习。',
+                            url: '/刻意练习',
+                            start: '2019-05-06',
+                            color: '#E9967A'
+                        },
+                        {
+                            title: '《基督山伯爵》',
+                            description: '如果你渴望得到某样东西，你得让TA自由，如果TA回到你身边，TA就是属于你的，如果TA不会回来，你就从未拥有过TA。',
+                            start: '2019-05-06',
+                            color: '#690'
+                        },
+                        {
+                            title: '《52赫兹》',
+                            description: '“喂，你知不知道那只频率为52赫兹的鲸鱼”\n “恩？”\n“她叫Alice，她独自歌唱，独自旅行，从太平洋穿越西北通道后到了大西洋，是那么的独一无二”\n“这意味着，彼此发出的问候，彼此永远也无法收到。对它来说，这个世界上，只有它一头鲸鱼”\n“就好像，我跨越万千人海寻觅，人海却穿越我的灵魂，始终无法产生共鸣”\n“一只手的掌声是怎样的呢? 它可以引起52赫兹的共鸣 ”\n\n这个故事还有另外一个名字叫做《这个世界怎么只有我自己》',
+                            start: '2019-05-06',
+                            color: '#690'
+                        },
+                        {
+                            title: '《终身学习》',
+                            description: '事实上，固定型思维模式是为了保护你，让你感到“安全”。但它的方法却做不到“成长”。所以，用成长型思维模式和它沟通，教育它，它就能支持和帮助你。',
+                            url: '/终身学习',
+                            start: '2019-05-07',
+                            color: '#E9967A'
+                        },
+                        {
+                            title: '20分钟跑步',
+                            start: '2019-05-07 20:50'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-07 21:15'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-08 22:00'
+                        },
+                        {
+                            title: '《心流》',
+                            description: '当你全身心地投入某件事，达到忘我的程度，并由此获得内心的秩序与安宁时，一种极大的满足感悄悄地潜入了你的心，使你快乐。这就是“心流”体验。',
+                            url: '/心流',
+                            start: '2019-05-08',
+                            color: '#E9967A'
+                        },
+                        {
+                            title: '读书而不化',
+                            description: '南怀瑾说，学佛一年佛在眼前，学佛两年佛在大殿，学佛三年佛在西天，越来越远了。读书而不化，犹如学佛的人，不但没有变好，反而更加的贪嗔痴，何苦来哉？',
+                            start: '2019-05-09',
+                            color: '#690'
+                        },
+                        {
+                            title: '《坚毅》',
+                            description: '像烤蛋糕那样培育坚毅品质\n1. 充满热情\n2. 追求幸福，幸福五要素：积极情绪、投入、人际关系、意义和成就\n3. 设定目标\n4. 自我调节\n5. 敢于冒险，“毕竟，如果你不去摘星星的话，哪一天你发现自己摘不到，也不会感到难过。”\n6. 有耐心\n7. 保持谦卑\n8. 坚持，提醒自己，要假装的那个对象，正是你想变成的那个人。',
+                            url: '/坚毅',
+                            start: '2019-05-09',
+                            color: '#E9967A'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-09 22:00'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-10 22:00'
+                        },
+                        {
+                            title: '8分钟Tabata',
+                            start: '2019-05-11 07:15'
+                        },
+                        {
+                            title: '暴走32000步',
+                            start: '2019-05-11'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-05-12 22:30'
+                        },
+                        {
+                            title: '《睡眠革命》',
+                            description: 'R90睡眠方案，就是打破8小时睡眠窠臼\n每周获得35个睡眠周期是最理想的，平均到每天大约是5个睡眠周期，一个完整的睡眠周期约为90分钟。',
+                            url: '/睡眠革命',
+                            start: '2019-05-12',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '《飞鸟集》',
+                            description: '你微笑的看着我，不说一句话。\n而我知道，为了这个，我已经等了很久了。',
+                            start: '2019-05-13',
+                            color: '#690'
+                        },
+                        {
+                            title: '《少有人走的路》',
+                            description: '自律四原则\n1. 推迟满足感\n2. 承担责任\n3. 忠于事实，也意味着我们必须敢于接受外界的质疑和挑战，允许别人来检视我们的地图是否过期\n4. 保持平衡\n\n爱的表现\n1. 努力倾听，帮助对方成长\n2. 不惧风险：不会因为害怕失去就放弃去爱\n3. 保持自己独立，也允许伴侣独立\n4. 充分投入：由承诺推动，持续或渐增的投入是爱的基石\n5. 勤于自省，平等交流：遇到矛盾与冲突，恰当地提出想法而非自大地随意批评\n6. 懂得自律：懂得约束爱的能量，不滥爱，不出轨，对伴侣和孩子有责任感\n\n克服懒惰\n路漫漫其修远兮，我们只有常常提醒自己放弃当下的逸乐，推迟满足感，勇于承担责任，主动投身于问题的核心，厘清事实，及时解决问题',
+                            url: '/少有人走的路',
+                            start: '2019-05-14',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-14 21:10'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-05-14 22:00'
+                        },
+                        {
+                            title: '《反脆弱》',
+                            url: '/反脆弱',
+                            start: '2019-05-16',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-16 21:00'
+                        },
+                        {
+                            title: '《活好》',
+                            url: '/活好',
+                            start: '2019-05-16',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '《你要的是幸福，还是对错》',
+                            url: '/你要的是幸福，还是对错',
+                            start: '2019-05-19',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-05-18 21:00'
+                        },
+                        {
+                            title: '《掌控》',
+                            url: '/掌控',
+                            start: '2019-05-20',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '《能力缺陷》',
+                            url: '/能力缺陷',
+                            start: '2019-05-21',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-05-21 21:00'
+                        },
+                        {
+                            title: '《我的情绪为何总被他人左右》',
+                            url: '/我的情绪为何总被他人左右',
+                            start: '2019-05-22',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-06-01 21:00'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            start: '2019-06-02 20:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-06-03 21:00'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-06-03 21:40'
+                        },
+                        {
+                            title: '《高绩效教练》',
+                            description: 'GOAL目标: 期望的成果是什么\n你的目标是什么\n什么时候实现\n实现目标的标志是什么\n如果需要量化的话，拿什么量化你的目标\n\nREALITY现实: 挖掘真相、澄清、理解\n目前的状况怎样\n你都做了些什么去实现目标\n是什么原因阻止你不能实现目标\n其他相关的因素有哪些\n\nOPTIONS选择: 探寻备选方案、征询建议\n为改变目前的情况，你能做什么\n你曾经见过或听说过别人有哪些做法\n请陈述你觉得采取行动的可能性，打分\n如果调整哪个指标，可以提高行动的可能性\n\nWILL意愿: 阐明行动计划、建立衡量标准、规定分工角色、建立自我责任\n何时是你采取下一步的最好时机\n可能遇到的障碍是什么\n你何时需要支持，以及如何获得支持',
+                            url: '/高绩效教练',
+                            start: '2019-06-03',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '《在最低迷的时光里》',
+                            description: '我们用逆商，自律与热爱，熬过雨雪风霜，终能等到春暖花开。\n\n逆商，让人绝地反击\n自律，让人不负此生\n热爱，让我们成为疲惫生活里的英雄',
+                            start: '2019-06-03',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-06-05 22:00'
+                        },
+                        {
+                            title: '《零售的哲学》',
+                            description: '',
+                            start: '2019-06-06',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-06-07 21:00'
+                        },
+                        {
+                            title: '徒步25公里',
+                            start: '2019-06-08 05:00'
+                        },
+                        {
+                            title: '《管理十诫》',
+                            description: '',
+                            start: '2019-06-09',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '《他人的力量》',
+                            description: '',
+                            start: '2019-06-10',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '《第3选择》',
+                            description: '',
+                            start: '2019-06-11',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '20分钟腹肌训练',
+                            start: '2019-06-11 22:00'
+                        },
+                        {
+                            title: '《正念的力量》',
+                            description: '',
+                            start: '2019-06-12',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '3D2Y',
+                            description: '听着，在品尝过胜利与失败，仓皇逃窜痛哭流涕的滋味之后，男人才会真正长大。\n哭也没有关系，要跨越过去。',
+                            start: '2020-09-01',
+                            color: '#C30'
+                        },
+                        {
+                            title: '20个俯卧撑',
+                            start: '2019-07-02 22:00'
+                        },
+                        {
+                            title: '20个俯卧撑',
+                            start: '2019-07-03 23:00'
+                        },
+                        {
+                            title: '50个卷腹',
+                            start: '2019-07-03 23:10'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            start: '2019-07-03 23:15'
+                        },
+                        {
+                            title: '20个俯卧撑',
+                            start: '2019-07-04 23:00'
+                        },
+                        {
+                            title: '50个卷腹',
+                            start: '2019-07-04 23:10'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            start: '2019-07-04 23:15'
+                        },
+                        {
+                            title: '《幸福的婚姻》',
+                            description: '父母可以给予孩子的最有意义的礼物之一是承认自己的错误。',
+                            start: '2019-07-18',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '面试',
+                            description: '1. 保持冷静，搜集信息\n2. 杜绝沉默，适当表达\n把面试当做一次探讨和沟通，即使一时没完全给出答案，也可以和面试官探讨，阐述你不成熟的想法、思路以及困惑。\n所以不要吝啬开口，勇敢地表达你的想法，哪怕思路不成熟，哪怕只是隐约知道怎么做，也可以试着和面试官分享。\n3. 回避问题，展示自己',
+                            start: '2019-07-20',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '墨菲定律',
+                            description: '1. 任何事都没有表面看起来那么简单。\n2. 所有的事都会比你预计的时间长。\n3. 可能出错的事总会出错。\n4. 如果你担心某种情况发生，那么它就更可能发生。',
+                            start: '2019-07-20',
+                            color: '#F08080'
+                        },
+                        {
+                            title: '腹肌撕裂20分钟',
+                            start: '2019-08-21 22:00'
+                        },
+                        {
+                            title: '腹肌撕裂25分钟',
+                            start: '2019-08-22 22:00'
+                        },
+                        // {
+                        //  title: '目标: 八块腹肌',
+                        //  description: '送给自己的新年礼物\n每天3/4组\n1. 波比跳 15个\n2. 高抬腿 30个\n3. 俯身登山 30个\n4. 深蹲 20个\n5. 开合跳 30个\n6. 平板支持 30s\n+ 腹肌撕裂者',
+                        //  start: '2019-12-31',
+                        //  end: '2019-12-31',
+                        //  color: '#EE8262'
+                        // },
+                        {
+                            title: '25分钟Tabata',
+                            description: '3组',
+                            start: '2019-11-18 21:30'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            description: '☹下班晚了',
+                            start: '2019-11-19 23:00'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            description: '4组',
+                            start: '2019-11-20 21:30'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            description: '4组',
+                            start: '2019-11-21 21:30'
+                        },
+                        {
+                            title: '50个卷腹',
+                            start: '2019-11-21 22:00'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            description: '4组',
+                            start: '2019-11-22 21:30'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            description: '4组',
+                            start: '2019-11-26 21:30'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            description: '☹吃烤肉去了',
+                            start: '2019-11-28 23:00'
+                        },
+                        {
+                            title: '腹肌撕裂30分钟',
+                            start: '2019-12-01 21:00'
+                        },
+                        {
+                            title: '1组腹肌撕裂',
+                            start: '2019-12-02 22:00'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            start: '2019-12-03 23:00'
+                        },
+                        {
+                            title: '30分钟跳绳',
+                            start: '2019-12-05 23:00'
+                        },
+                        {
+                            title: '3组腹肌撕裂',
+                            start: '2019-12-09 22:00'
+                        },
+                        {
+                            title: '1分钟平板支撑',
+                            start: '2019-12-10 23:00'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            description: '3组',
+                            start: '2020-02-25 22:00'
+                        },
+                        {
+                            title: '30分钟Tabata',
+                            description: '3组',
+                            start: '2020-02-27 22:00'
+                        },
+                        {
+                            title: '20分钟HIT减脂运动',
+                            description: '3组',
+                            start: '2020-03-01 12:00'
+                        },
+                        {
+                            title: '30分钟HIT减脂运动',
+                            description: '4组',
+                            start: '2020-03-02 22:00'
+                        },
+                        {
+                            title: '30分钟HIT减脂运动',
+                            description: '3组',
+                            start: '2020-03-03 22:00'
+                        },
+                        {
+                            title: '腹肌撕裂20分钟',
+                            start: '2020-03-07 23:00'
+                        },
+                        {
+                            title: '30分钟HIT减脂运动',
+                            description: '3组',
+                            start: '2020-03-09 22:00'
+                        },
+                        {
+                            title: '30分钟HIT减脂运动',
+                            description: '3组',
+                            start: '2020-03-10 22:00'
+                        },
+                        {
+                            title: '30分钟HIT减脂运动',
+                            description: '3组',
+                            start: '2020-03-15 22:00'
+                        },
+                        {
+                            title: '腹肌撕裂20分钟',
+                            start: '2020-03-16 22:00'
+                        },
+                        {
+                            title: '腹肌撕裂20分钟',
+                            start: '2020-03-17 22:00'
+                        },
+                        {
+                            title: '腹肌撕裂20分钟',
+                            start: '2020-03-19 22:00'
+                        },
+                        {
+                            title: '腹肌撕裂20分钟',
+                            start: '2020-03-21 22:00'
+                        },
+                        {
+                            title: '☹体重: 68KG',
+                            start: '2021-02-22',
+                            color: '#C30'
+                        },
+                    ]
+                });
+            });
+            </script>
+            <div id='calendar' style="width:800px;"></div>
+        </div>
+    </div>
 </div>
