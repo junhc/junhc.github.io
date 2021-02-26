@@ -4,77 +4,96 @@ title: "TODO"
 permalink: todo
 ---
 <div class="page-content wc-container">
+    <div class="post">
+        <h1>TODO</h1>
+        <p class="post-meta">
+            <span class="categories">
+                每日清单
+            </span> |
+            <span class="post-date">
+                {{ '2019-02-18' | date: "%b %-d, %Y" }}
+            </span>
+        </p>
+        <div class="post">
+            <link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
+            <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+            <!-- <link href='/assets/css/bootstrap.min.css' rel='stylesheet' /> -->
+            <style>
+            table tr {
+                border-top: none !important;
+                background-color: inherit !important;
+            }
 
-	<div class="post">
-		<h1>TODO</h1>
-		<p class="post-meta">
-      <span class="categories">
-      每日清单
-      </span> |
-	    <span class="post-date">
-    	{{ '2019-02-18' | date: "%b %-d, %Y" }}
-	    </span>
-		</p>
-		<div class="post">
-      <link href='/assets/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-      <link href='/assets/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-			<!-- <link href='/assets/css/bootstrap.min.css' rel='stylesheet' /> -->
-      <style>
-      table tr {
-        border-top:none!important;
-        background-color:inherit!important;
-      }
-			#calendar a {
-        color:#000!important;
-				cursor: default;
-      }
-			#calendar a:hover {
-        border-bottom: none!important;
-      }
-			#calendar .undone {
-			  text-decoration: line-through;
-			}
-      </style>
-      <script src='/assets/js/fullcalendar/moment.min.js'></script>
-      <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
-      <script src='/assets/js/fullcalendar/zh-cn.js'></script>
-			<!-- <script src='/assets/js/popper.min.js'></script> -->
-			<!-- <script src='/assets/js/bootstrap.min.js'></script> -->
-      <script>
-				$(function() {
-					$('#calendar').fullCalendar({
-						header: {
-							left: 'prev,next today',
-							center: 'title',
-							right: 'listDay'
-						},
-						locale: 'zh-cn',
-						defaultView: 'listDay',
-						navLinks: true, // can click day/week names to navigate views
-						editable: false,
-						eventLimit: true, // allow "more" link when too many events
-						eventRender: function(event, element) {
-							 var done = $(element).hasClass('done'), undone = $(element).hasClass('undone');
-							 $(element).find("td.fc-list-item-marker span.fc-event-dot").attr('style', 'background-color:' + (done ? '#690' : '#9c9c9c'));
-							 if(done) {
-								 $(element).find("td.fc-list-item-time").attr('style', 'color:#690!important');
-								 $(element).find("td.fc-list-item-title a").attr('style', 'color:#690!important');
-							 }
-							 if(undone) {
-								 $(element).find("td.fc-list-item-time").attr('style', 'color:#c30!important');
-								 $(element).find("td.fc-list-item-title a").attr('style', 'color:#c30!important');
-							 }
-							 if(event.description) {
-								 $(element).find("td.fc-list-item-title a").attr('title', event.description);
-							 }
-						},
-						events: [
-						]
-					});
-				});
-      </script>
-      <div id='calendar' style="width:800px;"></div>
-		</div>
-	</div>
+            #calendar a {
+                color: #000 !important;
+                cursor: default;
+            }
 
+            #calendar a:hover {
+                border-bottom: none !important;
+            }
+
+            #calendar .undone {
+                text-decoration: line-through;
+            }
+            </style>
+            <script src='/assets/js/fullcalendar/moment.min.js'></script>
+            <script src='/assets/js/fullcalendar/fullcalendar.min.js'></script>
+            <script src='/assets/js/fullcalendar/zh-cn.js'></script>
+            <!-- <script src='/assets/js/popper.min.js'></script> -->
+            <!-- <script src='/assets/js/bootstrap.min.js'></script> -->
+            <script>
+            $(function() {
+                $('#calendar').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'listDay'
+                    },
+                    locale: 'zh-cn',
+                    validRange: function(currentDate) {
+                        return {
+                            start: currentDate.clone().subtract(1, 'months'),
+                            end: currentDate
+                        }
+                    },
+                    defaultView: 'listDay',
+                    navLinks: true, // can click day/week names to navigate views
+                    editable: false,
+                    eventLimit: true, // allow "more" link when too many events
+                    eventRender: function(event, element) {
+                        var done = $(element).hasClass('done'),
+                            undone = $(element).hasClass('undone');
+                        $(element).find("td.fc-list-item-marker span.fc-event-dot").attr('style', 'background-color:' + (done ? '#690' : '#9c9c9c'));
+                        if (done) {
+                            $(element).find("td.fc-list-item-time").attr('style', 'color:#690!important');
+                            $(element).find("td.fc-list-item-title a").attr('style', 'color:#690!important');
+                        }
+                        if (undone) {
+                            $(element).find("td.fc-list-item-time").attr('style', 'color:#c30!important');
+                            $(element).find("td.fc-list-item-title a").attr('style', 'color:#c30!important');
+                        }
+                        if (event.description) {
+                            $(element).find("td.fc-list-item-title a").attr('title', event.description);
+                        }
+                    },
+                    events: []
+                });
+            });
+            </script>
+            <div id='calendar' style="width:800px;"></div>
+        </div>
+    </div>
 </div>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
