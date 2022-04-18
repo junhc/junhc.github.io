@@ -13,7 +13,7 @@ fi
 #pid
 pid=$1
 # checking pid
-if test -z "$($JAVA_HOME/bin/jps -l | cut -d '' -f 1 | grep $pid)"
+if test -z "$($JAVA_HOME/bin/jps -l | cut -d ' ' -f 1 | grep $pid)"
 then
     echo "process of $pid is not exists"
     exit
